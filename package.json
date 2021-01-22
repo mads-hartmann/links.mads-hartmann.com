@@ -1,0 +1,16 @@
+{
+  "name": "links.mads-hartmann.com",
+  "version": "1.0.0",
+  "description": "Links to resources I've read or want to read.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "eleventy --input=./src --serve",
+    "build": "eleventy build --input=./src"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "airtable": "^0.10.1"
+  }
+}

@@ -1,0 +1,12 @@
+---
+layout: layout.ejs
+title: Links
+---
+
+<ul>
+    <% airtable.forEach((u)=> { %>
+        <li>
+            <%= u.get('Title') %>
+        </li>
+        <% }) %>
+</ul>
