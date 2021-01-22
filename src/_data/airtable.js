@@ -31,7 +31,7 @@ async function allRecords() {
 
     base("Links")
       .select({
-        maxRecords: 100,
+        maxRecords: 1000,
         view: "Raw",
       })
       .eachPage(onPage, onDone);
