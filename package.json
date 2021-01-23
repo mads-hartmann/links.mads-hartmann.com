@@ -11,6 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
-    "airtable": "^0.10.1"
-  }
+    "airtable": "^0.10.1",
+    "liquidjs": "^9.19.0"
+  },
+  "dependencies": {}
 }

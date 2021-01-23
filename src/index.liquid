@@ -1,0 +1,12 @@
+---
+layout: layout.liquid
+title: Links
+---
+
+<ul>
+    {% for row in airtable %}
+        <li>
+            {{ row.title }}
+        </li>
+    {% endfor %}
+</ul>

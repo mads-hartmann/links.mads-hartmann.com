@@ -38,6 +38,9 @@ async function allRecords() {
   });
 }
 
-module.exports = async function () {
-  return await allRecords();
+module.exports = async () => {
+  const records = await allRecords()
+  return records.map((record) => ({
+    title: record.get("Title")
+  }));
 };
