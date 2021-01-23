@@ -1,2 +1,3 @@
 - [ ] Port over some of the styling from my foam repository
-- [ ] Find an easy way to use mock data during development so I don't have to have my API key around
+- [x] Find an easy way to use mock data during development so I don't have to have my API key around
+- [ ] Create a page with a good slug for each [see docs](https://www.11ty.dev/docs/pages-from-data/)
