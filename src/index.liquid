@@ -4,9 +4,9 @@ title: Links
 ---
 
 <ul>
-    {% for row in airtable %}
+    {% for link in airtable %}
         <li>
-            {{ row.title }}
+            <a href="/links/{{ link.title | slug }}">{{link.title}}</a>
         </li>
     {% endfor %}
 </ul>

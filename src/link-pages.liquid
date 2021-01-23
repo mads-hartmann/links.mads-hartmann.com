@@ -1,0 +1,10 @@
+---
+layout: layout.liquid
+pagination:
+    data: airtable
+    size: 1
+    alias: link
+permalink: "links/{{ link.title | slug }}/"
+---
+
+<h1>{{ link.title }}</h1>
