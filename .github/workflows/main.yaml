@@ -19,6 +19,7 @@ jobs:
 
       - name: Build site
         env:
+          ELEVENTY_ENV: production
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
         run: npm run build
 
