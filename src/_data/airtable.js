@@ -41,7 +41,7 @@ async function airtableRecords() {
       .eachPage(onPage, onDone);
   });
 
-  records.map((record) => ({
+  return records.map((record) => ({
     title: record.get("Title"),
   }));
 }
