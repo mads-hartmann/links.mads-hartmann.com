@@ -1,0 +1,2 @@
+- [ ] Port over some of the styling from my foam repository
+- [ ] Find an easy way to use mock data during development so I don't have to have my API key around
