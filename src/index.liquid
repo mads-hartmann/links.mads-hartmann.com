@@ -3,10 +3,4 @@ layout: layout.liquid
 title: Links
 ---
 
-<ul>
-    {% for link in links %}
-        <li>
-            <a href="/links/{{ link.title | slug }}">{{link.title}}</a>
-        </li>
-    {% endfor %}
-</ul>
+{% render "links-table/links-table.liquid", links: links %}

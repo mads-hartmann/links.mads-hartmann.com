@@ -4,8 +4,8 @@
   "description": "Links to resources I've read or want to read.",
   "main": "index.js",
   "scripts": {
-    "dev": "eleventy --input=./src --serve",
-    "build": "eleventy build --input=./src",
+    "dev": "eleventy --config=src/.eleventy.js --input=./src --serve",
+    "build": "eleventy build --config=src/.eleventy.js --input=./src",
     "format": "prettier --write src "
   },
   "author": "",
@@ -13,7 +13,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
     "airtable": "^0.10.1",
-    "liquidjs": "^9.19.0",
+    "liquidjs": "^9.20.1",
     "prettier": "^2.2.1"
   },
   "dependencies": {}

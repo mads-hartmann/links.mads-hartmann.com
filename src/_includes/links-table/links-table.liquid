@@ -1,0 +1,25 @@
+{% if links.size > 0 %}
+
+<table class="links-table">
+    <thead class="links-table__header">
+        <tr>
+            <th class="links-table__header-column links-table__header-column--wide">title</th>
+            <th class="links-table__header-column">topics</th>
+            <th class="links-table__header-column">rating</th>
+        </tr>
+    </thead>
+    <tbody class="links-table__body">
+
+        <tr class="links-table__body-row links-table__body-row--divider">
+            <td colspan="3" class="links-table__body-column">Links</td>
+        </tr>
+
+        {% for link in links %}
+            {% render "links-table/links-table-row.liquid", source: link %}
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+<p>No sources</p>
+{% endif %}

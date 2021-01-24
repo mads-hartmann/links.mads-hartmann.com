@@ -52,8 +52,13 @@ async function airtableRecords() {
  */
 function mockRecords() {
   return [
-    { title: "Inhumanity of Root Cause Analysis" },
-    { title: "Awesome limits" },
+    {
+      title: "Inhumanity of Root Cause Analysis",
+      url: "TODO",
+      read_on: "TODO",
+      rating: 4,
+    },
+    { title: "Awesome limits", url: "TODO", read_on: "TODO", rating: 3 },
   ];
 }
 

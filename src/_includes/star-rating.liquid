@@ -1,0 +1,8 @@
+<div class="star-rating">
+    {% for i in (1..rating) %}
+        <span class="star-rating__star star-rating__star--filled">★</span>
+    {% endfor %}
+    {% for i in (rating..4) %}
+        <span class="star-rating__star star-rating__star--empty">☆</span>
+    {% endfor %}
+</div>
