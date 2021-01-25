@@ -43,6 +43,11 @@ async function airtableRecords() {
 
   return records.map((record) => ({
     title: record.get("Title"),
+    url: record.get("Link"),
+    read_on: record.get("Read on"),
+    rating: record.get("Scale"),
+    kind: record.get("Kind"),
+    topics: record.get("Topic"),
   }));
 }
 
@@ -57,6 +62,8 @@ function mockRecords() {
       url: "TODO",
       read_on: "TODO",
       rating: 4,
+      kind: "blog",
+      topics: ["incident-response", "sre", "resilience-engineering"],
     },
     { title: "Awesome limits", url: "TODO", read_on: "TODO", rating: 3 },
   ];
