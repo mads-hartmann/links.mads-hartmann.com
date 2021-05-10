@@ -1,3 +1,5 @@
-- [ ] Port over some of the styling from my foam repository
-- [x] Find an easy way to use mock data during development so I don't have to have my API key around
-- [x] Create a page with a good slug for each [see docs](https://www.11ty.dev/docs/pages-from-data/)
+## Make it searchable
+Prototype in /search for now
+
+- [ ] Is it possible to make it tags aware? E.g. so I can express a query like 'link with tag SRE and title matching QUERY'
+- [ ] Build the index as part of CI instead of building it on demand? https://fusejs.io/api/indexing.html

@@ -1,0 +1,59 @@
+---
+layout: layout.liquid
+title: "Links | Search"
+---
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
+
+<form id="search">
+    <input type="text" id="search-input"></input>
+    <button type="submit" id="search-button">Search</button>
+</form>
+
+
+<ul id="results">
+</ul>
+
+<script>
+
+    let fuse = null;
+
+    const input = document.getElementById('search-input')
+    const form = document.getElementById('search')
+
+    function render(links) {
+        const resultsElem = document.getElementById('results');
+        resultsElem.innerHTML = null
+        links.forEach((link) => {
+            const li = document.createElement('li')
+            li.innerText = link.title
+            resultsElem.appendChild(li)
+        })
+    }
+
+    function search(event) {
+        const str = input.value
+        const results = fuse.search(str).map((r) => r.item)
+        render(results)
+        event.preventDefault();
+    }
+
+    async function initialise() {
+        const db = await fetch('/db.json')
+        try {
+            const json = await db.json();
+            
+            const options = { keys: ['title'] }
+            const index = Fuse.createIndex(options.keys, json)
+            fuse = new Fuse(json, options, index)
+
+        } catch (e) {
+            console.error('Failed to parse JSON', e)
+        }
+        
+        form.onsubmit = search;
+    }
+
+    initialise();
+
+</script>

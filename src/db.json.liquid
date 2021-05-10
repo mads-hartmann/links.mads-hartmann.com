@@ -4,7 +4,7 @@ permalink: /db.json
 [
 {% for link in links %}
    {
-      "title": "{{link.title}}" 
+      "title": "{{link.title | escape }}" 
    }
    {%- if forloop.last != true -%}
    ,
