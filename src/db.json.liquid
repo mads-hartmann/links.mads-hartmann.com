@@ -1,0 +1,13 @@
+---
+permalink: /db.json
+---
+[
+{% for link in links %}
+   {
+      "title": "{{link.title}}" 
+   }
+   {%- if forloop.last != true -%}
+   ,
+   {%- endif -%}
+{% endfor %}
+]
