@@ -1,0 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
+github:
+  prebuilds:
+    master: true
+
+ports:
+  - port: 8001
+    onOpen: open-preview
