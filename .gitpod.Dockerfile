@@ -14,3 +14,5 @@ RUN apt-get update && \
     apt clean && \
     rm -rf /var/lib/apt && \
     rm -rf /var/lib/dpkg/info/*
+
+RUN pip install datasette
