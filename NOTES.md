@@ -8,9 +8,19 @@ export AIRTABLE_KEY=$AIRTABLE_API_KEY
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 ```
 
+Enable FTS (full text search) - this creates a few virtual tables that Datasette uses to perform full text search (see [docs](https://docs.datasette.io/en/stable/full_text_search.html) for more info). I only care about searching the titles for now.
+
 ```sh
-datasette data/links.db
+sqlite-utils enable-fts data/links.db Links Title
 ```
+
+Start Datasette:
+
+```sh
+datasette serve -h 0.0.0.0 -p 8001 data/links.db
+```
+
+Or query using `sqlite3`
 
 ```sh
 sqlite3 data/links.db
@@ -33,3 +43,13 @@ FROM Links, json_each(Links.Topic)
 GROUP BY json_each.value
 ORDER BY count DESC;
 ```
+
+## Relevant docs
+
+- [Datasette Airtable Export](https://datasette.io/tools/airtable-export)
+- [SQLite JSON support](https://www.sqlite.org/json1.html)
+
+## TODO
+
+- [x] Enable search
+- [ ] Figure out how to deploy with AWS L
