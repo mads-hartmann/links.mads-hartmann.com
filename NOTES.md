@@ -49,6 +49,10 @@ ORDER BY count DESC;
 - [Datasette Airtable Export](https://datasette.io/tools/airtable-export)
 - [SQLite JSON support](https://www.sqlite.org/json1.html)
 
+Plugins
+
+- [datasette-render-markdown](https://datasette.io/plugins/datasette-render-markdown)
+
 ## TODO
 
 - [x] Enable search

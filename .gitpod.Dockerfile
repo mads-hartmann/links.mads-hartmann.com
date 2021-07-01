@@ -15,4 +15,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt && \
     rm -rf /var/lib/dpkg/info/*
 
-RUN pip install datasette airtable-export sqlite-utils
+RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
