@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - command: datasette data/links.db
+  - command: datasette serve -h 0.0.0.0 -p 8001 data/links.db
 
 ports:
   - port: 8001
