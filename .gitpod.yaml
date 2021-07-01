@@ -1,10 +1,14 @@
 image:
   file: .gitpod.Dockerfile
 
-github:
-  prebuilds:
-    master: true
+tasks:
+  - command: datasette data/links.db
 
 ports:
   - port: 8001
     onOpen: open-preview
+    visibility: public
+
+github:
+  prebuilds:
+    master: true
