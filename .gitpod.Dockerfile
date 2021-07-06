@@ -5,6 +5,8 @@ RUN apt update \
         curl \
         zip \
         sudo \
+        # software-properties-common provides add-apt-repository
+        software-properties-common \
         # Packages needed to allow apt to use a repository over HTTPS
         apt-transport-https \
         ca-certificates \
@@ -30,11 +32,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa && \
     apt install python3.9
 
 # Taken from https://github.com/simonw/datasette/blob/main/Dockerfile
-# software-properties-common provides add-apt-repository
-# which we need in order to install a more recent release
-# of libsqlite3-mod-spatialite from the sid distribution
-RUN apt-get -y --no-install-recommends install software-properties-common && \
-    add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
+RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
     apt-get update && \
     apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
     apt-get remove -y software-properties-common && \
