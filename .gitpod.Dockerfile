@@ -14,10 +14,11 @@ RUN apt update \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Install Docker
-RUN curl -o /var/lib/apt/docker.gpg -fsSL https://download.docker.com/linux/ubuntu/gpg \
-    && apt-key add /var/lib/apt/docker.gpg \
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-    && install-packages docker-ce docker-ce-cli containerd.io
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+RUN echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+RUN apt-get update && apt-get install docker-ce docker-ce-cli containerd.io
 
 #
 # Datasette
