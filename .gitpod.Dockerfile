@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 # Install python 3.9
 
 RUN add-apt-repository ppa:deadsnakes/ppa && \
-    apt install python3.9
+    apt-get install -y python3.9
 
 # Taken from https://github.com/simonw/datasette/blob/main/Dockerfile
 RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
