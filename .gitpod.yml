@@ -2,8 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - command: datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
+  - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
     openMode: split-right
+  - command: cd 11ty && npm run dev
+    openMode: split-left
 
 ports:
   - port: 8001
