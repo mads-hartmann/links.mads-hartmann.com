@@ -11,5 +11,8 @@ module.exports = (eleventyConfig) => {
       root: ["_includes"],
     })
   );
-  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.setBrowserSyncConfig({
+    host: "0.0.0.0"
+  })
 };

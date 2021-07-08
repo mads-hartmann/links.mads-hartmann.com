@@ -4,8 +4,8 @@
   "description": "Links to resources I've read or want to read.",
   "main": "index.js",
   "scripts": {
-    "dev": "eleventy --config=src/.eleventy.js --input=./src --serve",
-    "build": "eleventy build --config=src/.eleventy.js --input=./src",
+    "dev": "eleventy --config=.eleventy.js --input=. --serve",
+    "build": "eleventy build --config=.eleventy.js --input=.",
     "format": "prettier --write src "
   },
   "author": "",
