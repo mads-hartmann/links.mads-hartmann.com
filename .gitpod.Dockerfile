@@ -49,6 +49,7 @@ RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
 # Dependencies: Node, NPM
 #
 
+# See https://github.com/nodesource/distributions/blob/master/README.md
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 
