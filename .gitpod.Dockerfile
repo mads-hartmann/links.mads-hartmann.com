@@ -28,7 +28,8 @@ RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install python 3.9
 
-RUN add-apt-repository ppa:deadsnakes/ppa && \
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
+    add-apt-repository ppa:deadsnakes/ppa && \
     apt-get install -y python3.9
 
 # Taken from https://github.com/simonw/datasette/blob/main/Dockerfile
