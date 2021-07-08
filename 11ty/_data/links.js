@@ -6,13 +6,13 @@ const ELEVENTY_ENV = process.env.ELEVENTY_ENV || "development";
  * Loads all links from my Airtable database.
  */
 async function airtableRecords() {
-  const AIRTABLE_BASE_ID = "app4qb1AkwWAND48o";
-  const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+  const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+  const AIRTABLE_KEY = process.env.AIRTABLE_KEY;
   const AIRTABLE_ENDPOINT = "https://api.airtable.com";
 
   const base = new Airtable({
     endpointUrl: AIRTABLE_ENDPOINT,
-    apiKey: AIRTABLE_API_KEY,
+    apiKey: AIRTABLE_KEY,
   }).base(AIRTABLE_BASE_ID);
 
   const records = await new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ async function airtableRecords() {
 }
 
 /**
- * Used during development do I don't have to have my AIRTABLE_API_KEY
+ * Used during development so I don't have to have my AIRTABLE_KEY
  * around when I'm just developing.
  */
 function mockRecords() {

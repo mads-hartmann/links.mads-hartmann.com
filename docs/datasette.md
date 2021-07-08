@@ -1,10 +1,8 @@
-# Notes
+# Datasette
 
-I'm playing around with datasette. This might turn into the new README.
+To generate the SQLite database from Airtable
 
 ```sh
-export AIRTABLE_BASE_ID="app4qb1AkwWAND48o"
-export AIRTABLE_KEY=$AIRTABLE_API_KEY
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 ```
 
@@ -52,8 +50,3 @@ ORDER BY count DESC;
 Plugins
 
 - [datasette-render-markdown](https://datasette.io/plugins/datasette-render-markdown)
-
-## TODO
-
-- [x] Enable search
-- [ ] Figure out how to deploy with AWS L

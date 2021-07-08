@@ -2,12 +2,21 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - command: datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
+  - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
     openMode: split-right
+  - init: cd 11ty && npm install
+    command: npm run dev
+    openMode: split-left
 
 ports:
+  - port: 8080
+    onOpen: notify
+    visibility: public
+  - port: 3001
+    onOpen: ignore
+    visibility: private
   - port: 8001
-    onOpen: open-preview
+    onOpen: notify
     visibility: public
 
 github:
