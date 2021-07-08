@@ -1,31 +1,20 @@
 # links.mads-hartmann.com
 
-Static site rendering all the links in my link database. The data is managed as a table in Airtable and the site is generated using 11ty.
+For quite a while I've been keeping track of blog posts, conference talks, etc. that I have read or might want to read at some point. I store it all in Airtable, but in this repository I experiment with different ways of consuming the data.
 
-Environment variables
+See [./docs/development-environment.md](./docs/development-environment.md) for notes on how the development environment is set up.
 
-| Name | Description |
-| - | - |
-| ELEVENTY_ENV | Either `development` or `production`. Will use mock data during development and real data from Airtable when set to production. |
-| AIRTABLE_KEY | Used in `production` mode to authenticate with the Airtable API |
+## Datasette
 
+One way to view the data is to use [Datasette](https://datasette.io/). I use the [Airtable Exporter](https://datasette.io/tools/airtable-export) to generate a SQLite database from my Airtable base and then use Datasette to explore the data:
 
-## Development
+- Links are queryable using SQL
+- Full-text search is enabled
 
-Using mock data
+See [docs/datasette.md](./docs/datasette.md) for more notes.
 
-```sh
-npm run dev
-```
+## 11ty
 
-Using the data in Airtable
+I use 11ty to generate a static site rendering all he links in my Airtable base. I have created a custom data source that uses the Airtable API to fetch all the records. The static site is published on links.mads-hartmann.com.
 
-```sh
-ELEVENTY_ENV='production' AIRTABLE_KEY='xyz' npm run dev
-```
-
-## Resources
-
-- [Airtable API documentation](https://airtable.com/app4qb1AkwWAND48o/api/docs#curl/introduction) for my table.
-- [LiquidJS](https://liquidjs.com)
-- [11ty](https://www.11ty.dev)
+See [docs/11ty.md](./docs/11ty.md) for more notes.
