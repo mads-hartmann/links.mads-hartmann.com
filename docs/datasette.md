@@ -1,6 +1,6 @@
 # Datasette
 
-I'm playing around with datasette.
+To generate the SQLite database from Airtable
 
 ```sh
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
