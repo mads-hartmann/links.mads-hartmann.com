@@ -6,7 +6,7 @@ const ELEVENTY_ENV = process.env.ELEVENTY_ENV || "development";
  * Loads all links from my Airtable database.
  */
 async function airtableRecords() {
-  const AIRTABLE_BASE_ID = "app4qb1AkwWAND48o";
+  const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
   const AIRTABLE_KEY = process.env.AIRTABLE_KEY;
   const AIRTABLE_ENDPOINT = "https://api.airtable.com";
 
