@@ -33,15 +33,14 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
     apt-get install -y python3.9
 
 # Taken from https://github.com/simonw/datasette/blob/main/Dockerfile
-RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
-    apt-get update && \
-    apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
-    apt-get remove -y software-properties-common && \
-    apt clean && \
-    rm -rf /var/lib/apt && \
-    rm -rf /var/lib/dpkg/info/*
+# RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
+#     apt-get update && \
+#     apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
+#     apt clean && \
+#     rm -rf /var/lib/apt && \
+#     rm -rf /var/lib/dpkg/info/*
 
-RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
+# RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
 
 #
 # 11ty
