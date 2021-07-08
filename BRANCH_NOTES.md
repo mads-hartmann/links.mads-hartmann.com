@@ -1,4 +1,4 @@
-- Finish the move to ubuntu 20.10 for the datasette setup
+- [x] Finish the move to ubuntu 20.10 for the datasette setup
 - Finish the folder restructure
 - Make the 11ty setup work
 - Fix the ENV names, AIRTABLE_API_KEY should be AIRTABLE_KEY for consistency between datasette/11ty. This should also be fixed in Github and in Gitpod.

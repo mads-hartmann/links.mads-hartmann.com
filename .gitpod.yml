@@ -4,10 +4,14 @@ image:
 tasks:
   - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
     openMode: split-right
-  - command: cd 11ty && npm run dev
+  - init: cd 11ty && npm install
+    command: cd 11ty && npm run dev
     openMode: split-left
 
 ports:
+  - port: 8080
+    onOpen: open-preview
+    visibility: public
   - port: 8001
     onOpen: open-preview
     visibility: public
