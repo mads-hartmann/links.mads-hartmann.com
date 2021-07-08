@@ -24,29 +24,38 @@ RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 #
 # Datasette
+# Dependencies: Python3 and pip3
 #
 
-# Install python 3.9
-
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get install -y python3.9
+# Ubuntu 20.10 ships with Python 3.8, but not with pip.
+RUN apt-get install -y python3-pip
 
 # Taken from https://github.com/simonw/datasette/blob/main/Dockerfile
-# RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
-#     apt-get update && \
-#     apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
-#     apt clean && \
-#     rm -rf /var/lib/apt && \
-#     rm -rf /var/lib/dpkg/info/*
+# (Mads) Modified to add missing keys.
+RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && \
+    apt-get update && \
+    apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
+    apt clean && \
+    rm -rf /var/lib/apt && \
+    rm -rf /var/lib/dpkg/info/*
 
-# RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
+# Install datasette and datasette plugins.
+RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
 
 #
 # 11ty
+# Dependencies: Node, NPM
 #
 
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs
+
+#
 # Gitpod user
+#
+
 # Taken from https://github.com/gitpod-io/workspace-images/blob/master/base/Dockerfile
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
     # passwordless sudo for users in the 'sudo' group
