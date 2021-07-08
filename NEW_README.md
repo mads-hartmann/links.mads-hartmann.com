@@ -7,8 +7,6 @@ For a few years I've kept track of everything I have read, or that I might want 
 I'm playing around with datasette. This might turn into the new README.
 
 ```sh
-export AIRTABLE_BASE_ID="app4qb1AkwWAND48o"
-export AIRTABLE_KEY=$AIRTABLE_API_KEY
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 ```
 
