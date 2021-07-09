@@ -22,3 +22,7 @@ The following environment variables needed. For Gitpod these can be configured i
 | ELEVENTY_ENV | Either `development` or `production`. Will use mock data during development and real data from Airtable when set to production. |
 | AIRTABLE_BASE_ID | The table ID |
 | AIRTABLE_KEY | Used. to authenticate with the Airtable API |
+
+## Ports
+
+TODO: add ports
