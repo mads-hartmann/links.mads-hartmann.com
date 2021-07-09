@@ -10,6 +10,14 @@ async function airtableRecords() {
   const AIRTABLE_KEY = process.env.AIRTABLE_KEY;
   const AIRTABLE_ENDPOINT = "https://api.airtable.com";
 
+  if (!AIRTABLE_BASE_ID) {
+    throw new Error("Missing environment variable: AIRTABLE_BASE_ID")
+  }
+
+  if (!AIRTABLE_KEY) {
+    throw new Error("Missing environment variable: AIRTABLE_KEY")
+  }
+
   const base = new Airtable({
     endpointUrl: AIRTABLE_ENDPOINT,
     apiKey: AIRTABLE_KEY,
