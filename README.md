@@ -4,6 +4,15 @@ For quite a while I've been keeping track of blog posts, conference talks, etc. 
 
 See [./docs/development-environment.md](./docs/development-environment.md) for notes on how the development environment is set up.
 
+## Table of contents
+
+<!-- toc -->
+
+- [Datasette](#datasette)
+- [11ty](#11ty)
+
+<!-- tocstop -->
+
 ## Datasette
 
 One way to view the data is to use [Datasette](https://datasette.io/). I use the [Airtable Exporter](https://datasette.io/tools/airtable-export) to generate a SQLite database from my Airtable base and then use Datasette to explore the data:

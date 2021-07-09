@@ -1,5 +1,14 @@
 # Development environment
 
+## Table of contents
+
+<!-- toc -->
+
+- [Gitpod](#gitpod)
+- [Environment variables](#environment-variables)
+
+<!-- tocstop -->
+
 ## Gitpod
 
 I use [Gitpod](https://www.gitpod.io/) to manage my development environment. See [.gitpod.Dockerfile](./../.gitpod.Dockerfile) for the concrete development environment and [.gitpod.yaml](./../.gitpod.yml) for Gitpod specific configuration (which ports to expose, what command to run during start-up etc.).
