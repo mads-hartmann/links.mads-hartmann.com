@@ -1,8 +1,6 @@
 {
-  "dependencies": {
-    "markdown-toc": "^1.2.0"
-  },
   "devDependencies": {
+    "markdown-toc": "^1.2.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.0.0"
   },
