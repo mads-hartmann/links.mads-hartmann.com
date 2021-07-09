@@ -6,6 +6,7 @@
 
 - [Gitpod](#gitpod)
 - [Environment variables](#environment-variables)
+- [Ports](#ports)
 
 <!-- tocstop -->
 
@@ -26,3 +27,7 @@ The following environment variables needed. For Gitpod these can be configured i
 ## Ports
 
 TODO: add ports
+
+## Git hooks
+
+I'm using [Husky](https://typicode.github.io/husky/#/) to handle Git hooks. The hooks can be found in the `.husky` folder.
