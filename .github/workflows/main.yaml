@@ -20,6 +20,7 @@ jobs:
       - name: Build site
         env:
           ELEVENTY_ENV: production
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
         run: cd 11ty && npm run build
 
