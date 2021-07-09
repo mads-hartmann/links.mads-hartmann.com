@@ -16,9 +16,6 @@ Keeping track of various TODOs for experiments and so on.
 
 ## 11ty
 
-- [ ] Fix CI
-- [x] Fix Gitpod start command
-
 ### Make it searchable
 Prototype in /search for now
 
