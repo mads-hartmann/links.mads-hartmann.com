@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
-# TODO: Check that the location is the root of the repo (can I use git to find it?)
+# Make sure we're in the root of the repository.
+cd "$(git rev-parse --show-toplevel)"
 
+# Format all tracked markdown files.
 git ls-tree -r main --name-only \
 | grep -E '.md$' \
 | xargs -I{} ./node_modules/.bin/markdown-toc -i '{}'

@@ -2,8 +2,12 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
+  # Tools
+  - init: npm install
+  # Datasette
   - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
     openMode: split-right
+  # 11ty
   - init: cd 11ty && npm install
     command: cd 11ty && npm run dev
     openMode: split-left
