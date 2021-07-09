@@ -7,6 +7,7 @@
 - [Gitpod](#gitpod)
 - [Environment variables](#environment-variables)
 - [Ports](#ports)
+- [Git hooks](#git-hooks)
 
 <!-- tocstop -->
 
@@ -31,3 +32,5 @@ TODO: add ports
 ## Git hooks
 
 I'm using [Husky](https://typicode.github.io/husky/#/) to handle Git hooks. The hooks can be found in the `.husky` folder.
+
+pre-commit uses [lint-staged](https://github.com/okonet/lint-staged) to only target staged files. The configuration of `lint-staged` can be found in `.lintstagedrc.js`.
