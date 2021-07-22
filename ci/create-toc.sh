@@ -8,7 +8,11 @@ echo "Changing directory to ${path}"
 cd "${path}"
 
 # Format all tracked markdown files.
-echo "Running markdoc-toc on files"
-git ls-tree -r main --name-only \
-| grep -E '.md$' \
+files="$(
+    git ls-tree -r main --name-only \
+    | grep -E '.md$'
+)"
+echo "Running markdoc-toc on files: ${files}"
+
+echo "${files}" \
 | xargs -I{} ./node_modules/.bin/markdown-toc -i '{}'
