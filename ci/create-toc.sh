@@ -9,7 +9,7 @@ cd "${path}"
 
 # Format all tracked markdown files.
 files="$(
-    git ls-tree -r main --name-only \
+    git ls-tree -r --name-only HEAD \
     | grep -E '.md$'
 )"
 echo "Running markdoc-toc on files: ${files}"
