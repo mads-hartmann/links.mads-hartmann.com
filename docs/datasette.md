@@ -1,10 +1,26 @@
 # Datasette
 
+## Table of contents
+
+<!-- toc -->
+
+- [Generating SQLite database](#generating-sqlite-database)
+- [Enable FTS](#enable-fts)
+- [Run datasette](#run-datasette)
+- [Query using `sqlite3`](#query-using-sqlite3)
+- [Relevant docs](#relevant-docs)
+
+<!-- tocstop -->
+
+## Generating SQLite database
+
 To generate the SQLite database from Airtable
 
 ```sh
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 ```
+
+## Enable FTS
 
 Enable FTS (full text search) - this creates a few virtual tables that Datasette uses to perform full text search (see [docs](https://docs.datasette.io/en/stable/full_text_search.html) for more info). I only care about searching the titles for now.
 
@@ -12,11 +28,15 @@ Enable FTS (full text search) - this creates a few virtual tables that Datasette
 sqlite-utils enable-fts data/links.db Links Title
 ```
 
+## Run datasette
+
 Start Datasette:
 
 ```sh
 datasette serve -h 0.0.0.0 -p 8001 data/links.db
 ```
+
+## Query using `sqlite3`
 
 Or query using `sqlite3`
 

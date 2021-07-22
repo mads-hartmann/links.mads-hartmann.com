@@ -4,7 +4,7 @@ Keeping track of various TODOs for experiments and so on.
 
 ## Docs
 
-- [ ] Automatically create TOCs
+- [x] Automatically create TOCs
 - [ ] Spell-check
 - [ ] Markdown linting
 
