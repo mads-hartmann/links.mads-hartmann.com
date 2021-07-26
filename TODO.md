@@ -21,3 +21,7 @@ Prototype in /search for now
 
 - [ ] Is it possible to make it tags aware? E.g. so I can express a query like 'link with tag SRE and title matching QUERY'
 - [ ] Build the index as part of CI instead of building it on demand? https://fusejs.io/api/indexing.html
+
+## NextJS
+
+- [ ] Add to gitpod setting
