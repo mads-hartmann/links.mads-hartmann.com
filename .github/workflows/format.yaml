@@ -1,0 +1,40 @@
+# Runs automatic formatters on all branches whenever changes are pushed to the branch.
+name: Format
+on:
+  push
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: NPM install
+        run: npm ci
+
+      - name: Markdown TOCs
+        run: ./ci/create-toc.sh
+      
+      - name: Commit
+        run: |
+          if test -n "$(git status --porcelain)"; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add -u
+            git commit -m "Automatic formatting: Markdown TOC"
+          fi
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.extract_branch.outputs.branch }}
