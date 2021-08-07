@@ -1,6 +1,7 @@
 import { fetchLinks, fetchLink } from "../../lib/links";
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const links = await fetchLinks()
     const paths = links.map((link) => ({
         params: { id: link.id }
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async (context) => {
     const link = await fetchLink(context.params.id)
     return {
         props: {
@@ -26,7 +27,7 @@ export default function Home({ link }) {
             <h1>{link.title}</h1>
             <ul>
                 {link.topics.map(topic => (
-                    <li>{topic}</li>
+                    <li key={topic}>{topic}</li>
                 ))}
             </ul>
         </>

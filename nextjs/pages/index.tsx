@@ -14,7 +14,7 @@ export default function Home({ links }) {
     <div className={styles.container}>
       <ul>
         {links.map(link => (
-          <li>
+          <li key={link.id}>
             <a href={`/links/${link.id}`}>
               {link.title}
             </a>
