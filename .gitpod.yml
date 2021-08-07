@@ -6,21 +6,31 @@ tasks:
   - init: npm install
   # Datasette
   - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
-    openMode: split-right
+    openMode: tab-after
   # 11ty
   - init: cd 11ty && npm install
     command: cd 11ty && npm run dev
-    openMode: split-left
+    openMode: tab-after
+  # NextJS
+  - init: cd nextjs && npm install
+    command: cd 11ty && npm run dev
+    openMode: tab-after
 
 ports:
+  # 11ty
   - port: 8080
     onOpen: notify
     visibility: public
   - port: 3001
     onOpen: ignore
     visibility: private
+  # Datasette
   - port: 8001
     onOpen: notify
+    visibility: public
+  # NextJS
+  - port: 3000
+    onOpen: ignore
     visibility: public
 
 github:

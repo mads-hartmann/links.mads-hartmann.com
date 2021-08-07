@@ -1,17 +1,21 @@
+import { fetchLinks, fetchLink } from "../../lib/links";
+
 export async function getStaticPaths() {
+    const links = await fetchLinks()
+    const paths = links.map((link) => ({
+        params: { id: link.id }
+    }))
     return {
-        paths: [
-            { params: { id: '1' } },
-            { params: { id: '2' } }
-        ],
+        paths: paths,
         fallback: false
     };
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
+    const link = await fetchLink(context.params.id)
     return {
         props: {
-            link: { id: '1', title: 'link 1' },
+            link: link,
         }
     }
 }
@@ -20,6 +24,11 @@ export default function Home({ link }) {
     return (
         <>
             <h1>{link.title}</h1>
+            <ul>
+                {link.topics.map(topic => (
+                    <li>{topic}</li>
+                ))}
+            </ul>
         </>
     )
 }
