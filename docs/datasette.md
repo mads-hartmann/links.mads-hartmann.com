@@ -44,6 +44,12 @@ Or query using `sqlite3`
 sqlite3 data/links.db
 ```
 
+To describe the tables
+
+```sql
+.schema Links
+```
+
 The multiple-select Airtable columns are JSON arrays so to query them I have to use the [JSON support](https://www.sqlite.org/json1.html). The following example queries links with the SRE tag.
 
 ```sql

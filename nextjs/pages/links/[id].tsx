@@ -1,8 +1,8 @@
-import { fetchLinks, fetchLink } from "../../lib/links";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { getLink, getLinks } from '../../lib/links-sqlite'
+import { GetStaticProps, GetStaticPaths } from 'next'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const links = await fetchLinks()
+    const links = await getLinks()
     const paths = links.map((link) => ({
         params: { id: link.id }
     }))
@@ -13,7 +13,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const link = await fetchLink(context.params.id)
+    const id: string = context.params.id as string
+    const link = await getLink(id)
     return {
         props: {
             link: link,
@@ -21,13 +22,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 }
 
-export default function Home({ link }) {
+export default function LinkPage({ link }) {
     return (
         <>
-            <h1>{link.title}</h1>
+            <h1>Title: {link.title}</h1>
             <ul>
                 {link.topics.map(topic => (
-                    <li key={topic}>{topic}</li>
+                    <li key={topic}>
+                        <a href={`/tags/${topic}`}>
+                            {topic}
+                        </a>
+                    </li>
                 ))}
             </ul>
         </>

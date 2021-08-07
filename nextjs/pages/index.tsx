@@ -1,10 +1,10 @@
 import styles from '../styles/Home.module.css'
-import { fetchLinks } from '../lib/links'
+import { getLinks } from '../lib/links-sqlite'
 
 export async function getStaticProps() {
   return {
     props: {
-      links: await fetchLinks()
+      links: await getLinks()
     }
   }
 }
