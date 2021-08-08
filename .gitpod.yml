@@ -8,8 +8,8 @@ tasks:
   - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json data/links.db
     openMode: tab-after
   # NextJS
-  - init: cd nextjs && npm install
-    command: cd nextjs && npm run dev
+  - init: cd ${GITPOD_REPO_ROOT}/nextjs && npm install
+    command: cd ${GITPOD_REPO_ROOT}/nextjs && npm run dev
     openMode: tab-after
 
 ports:
