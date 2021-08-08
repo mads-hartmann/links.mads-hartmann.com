@@ -2,8 +2,6 @@
 
 Keeping track of various TODOs for experiments and so on.
 
-- [ ] Add `apt-get install sqlite3` to Gtipod environment
-
 ## Docs
 
 - [x] Automatically create TOCs

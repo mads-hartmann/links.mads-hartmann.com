@@ -12,6 +12,8 @@ RUN apt update \
         ca-certificates \
         gnupg \
         lsb-release \
+        # SQLite
+        sqlite3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
