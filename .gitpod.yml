@@ -9,7 +9,7 @@ tasks:
     openMode: tab-after
   # NextJS
   - init: cd nextjs && npm install
-    command: npm run dev
+    command: cd nextjs && npm run dev
     openMode: tab-after
 
 ports:
