@@ -1,4 +1,4 @@
-name: Build & deploy
+name: Build
 on:
   push:
     branches:
@@ -15,23 +15,7 @@ jobs:
           node-version: "12"
 
       - name: NPM install
-        run: cd 11ty && npm ci
+        run: cd nextjs && npm ci
 
-      - name: Build site
-        env:
-          ELEVENTY_ENV: production
-          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
-          AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
-        run: cd 11ty && npm run build
-
-      - name: Upload to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: cd 11ty && aws s3 sync --region us-east-1 _site/ s3://${{ secrets.BUCKET_NAME }}/
-
-      - name: Invalidate cache
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: cd 11ty && aws cloudfront create-invalidation --region us-east-1 --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+      - name: Build site (verify that it works)
+        run: cd nextjs && npm run build

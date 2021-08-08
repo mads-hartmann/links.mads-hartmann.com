@@ -45,7 +45,7 @@ RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
 RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
 
 #
-# 11ty
+# NextJS
 # Dependencies: Node, NPM
 #
 
