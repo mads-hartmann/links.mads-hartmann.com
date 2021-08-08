@@ -9,7 +9,7 @@ See [./docs/development-environment.md](./docs/development-environment.md) for n
 <!-- toc -->
 
 - [Datasette](#datasette)
-- [11ty](#11ty)
+- [NextJS](#nextjs)
 
 <!-- tocstop -->
 
@@ -22,8 +22,8 @@ One way to view the data is to use [Datasette](https://datasette.io/). I use the
 
 See [docs/datasette.md](./docs/datasette.md) for more notes.
 
-## 11ty
+## NextJS
 
-I use 11ty to generate a static site rendering all he links in my Airtable base. I have created a custom data source that uses the Airtable API to fetch all the records. The static site is published on links.mads-hartmann.com.
+I'm using NextJS to create a website to browse my links.
 
-See [docs/11ty.md](./docs/11ty.md) for more notes.
+See [docs/nextjs.md](./docs/nextjs.md) for more notes.

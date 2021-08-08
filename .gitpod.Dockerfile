@@ -12,6 +12,8 @@ RUN apt update \
         ca-certificates \
         gnupg \
         lsb-release \
+        # SQLite
+        sqlite3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
@@ -45,7 +47,7 @@ RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
 RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
 
 #
-# 11ty
+# NextJS
 # Dependencies: Node, NPM
 #
 

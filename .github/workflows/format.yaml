@@ -1,7 +1,6 @@
 # Runs automatic formatters on all branches whenever changes are pushed to the branch.
 name: Format
-on:
-  push
+on: push
 jobs:
   format:
     name: Format
@@ -18,7 +17,7 @@ jobs:
 
       - name: Markdown TOCs
         run: ./ci/create-toc.sh
-      
+
       - name: Commit
         run: |
           if test -n "$(git status --porcelain)"; then
