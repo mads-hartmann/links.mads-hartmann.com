@@ -1,0 +1,18 @@
+name: Build
+on: push
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+
+      - name: NPM install
+        run: cd nextjs && npm ci
+
+      - name: Build site (verify that it works)
+        run: cd nextjs && npm run build
