@@ -135,3 +135,31 @@ export async function getLinksWithTag(tag: string): Promise<Link[]> {
             });
     })
 }
+
+export async function searchTitle(token: string): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+        const titles: string[] = []
+
+        const query = `
+            SELECT Title FROM Links_fts where Title MATCH ?
+        `
+
+        console.log(`Searching for title matching: ${token}`)
+
+        db.each(query, token,
+            (error, row) => {
+                if (error) {
+                    reject(error)
+                } else {
+                    titles.push(row['Title'])
+                }
+            },
+            (error, count) => {
+                if (error) {
+                    reject(error)
+                } else {
+                    resolve(titles)
+                }
+            });
+    })
+}

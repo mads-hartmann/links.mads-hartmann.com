@@ -20,12 +20,20 @@ To generate the SQLite database from Airtable
 airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 ```
 
-## Enable FTS
+## Enable FTS (full text search)
 
 Enable FTS (full text search) - this creates a few virtual tables that Datasette uses to perform full text search (see [docs](https://docs.datasette.io/en/stable/full_text_search.html) for more info). I only care about searching the titles for now.
 
 ```sh
 sqlite-utils enable-fts data/links.db Links Title
+```
+
+See the docs for more details [here](https://www.sqlite.org/fts5.html).
+
+A basic query would be
+
+```sql
+SELECT * FROM Links_fts where Title MATCH '50ms';
 ```
 
 ## Run datasette
