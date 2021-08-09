@@ -17,5 +17,5 @@ Keeping track of various TODOs for experiments and so on.
 ## NextJS
 
 - [X] Add to gitpod setting
-- [ ] Finish basic browsing
+- [X] Finish basic browsing
 - [ ] Add search functionality, preferably an API endpoint backed by SQLite

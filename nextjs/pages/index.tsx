@@ -1,26 +1,13 @@
 import styles from '../styles/Home.module.css'
-import { getLinks } from '../lib/links-sqlite'
 
-export async function getStaticProps() {
-  return {
-    props: {
-      links: await getLinks()
-    }
-  }
-}
-
-export default function Home({ links }) {
-  return (
-    <div className={styles.container}>
-      <ul>
-        {links.map(link => (
-          <li key={link.id}>
-            <a href={`/links/${link.id}`}>
-              {link.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+export default function Home({ tags }) {
+    return (
+        <div className={styles.container}>
+            <h1>links.mads-hartmann.com</h1>
+            <ul>
+                <li><a href="/tags">All tags</a></li>
+                <li><a href="/links">All links</a></li>
+            </ul>
+        </div>
+    )
 }
