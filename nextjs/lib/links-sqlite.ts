@@ -136,12 +136,12 @@ export async function getLinksWithTag(tag: string): Promise<Link[]> {
     })
 }
 
-export async function searchTitle(token: string): Promise<string[]> {
+export async function searchTitle(token: string): Promise<{ title: string, id: string }[]> {
     return new Promise((resolve, reject) => {
-        const titles: string[] = []
+        const titles: { title: string, id: string }[] = []
 
         const query = `
-            SELECT Title FROM Links_fts where Title MATCH ?
+            SELECT Title, airtable_id FROM Links_fts where Title MATCH ?
         `
 
         console.log(`Searching for title matching: ${token}`)
@@ -151,7 +151,10 @@ export async function searchTitle(token: string): Promise<string[]> {
                 if (error) {
                     reject(error)
                 } else {
-                    titles.push(row['Title'])
+                    titles.push({
+                        title: row['Title'],
+                        id: row['airtable_id'],
+                    })
                 }
             },
             (error, count) => {
