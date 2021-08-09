@@ -3,7 +3,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const tags = await getTags()
-    console.log(tags)
     const paths = tags.map((tag) => ({
         params: { tag: tag }
     }))

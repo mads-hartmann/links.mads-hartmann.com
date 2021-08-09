@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { useState } from 'react'
+import Link from 'next/link'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -18,9 +19,9 @@ export default function Home() {
 
             {data.links.map(link => (
                 <li key={link.id}>
-                    <a href={`/links/${link.id}`}>
+                    <Link href={`/links/${link.id}`}>
                         {link.title}
-                    </a>
+                    </Link>
                 </li>
             ))}
         </div>

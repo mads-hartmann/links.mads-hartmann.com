@@ -1,5 +1,6 @@
 import { getLink, getLinks } from '../../lib/links-sqlite'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import Link from 'next/link'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const links = await getLinks()
@@ -29,9 +30,9 @@ export default function LinkPage({ link }) {
             <ul>
                 {link.topics.map(topic => (
                     <li key={topic}>
-                        <a href={`/tags/${topic}`}>
+                        <Link href={`/tags/${topic}`}>
                             {topic}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>

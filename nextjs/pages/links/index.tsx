@@ -1,4 +1,5 @@
 import { getLinks } from '../../lib/links-sqlite'
+import Link from 'next/link'
 
 export async function getStaticProps() {
   return {
@@ -14,9 +15,9 @@ export default function Home({ links }) {
       <ul>
         {links.map(link => (
           <li key={link.id}>
-            <a href={`/links/${link.id}`}>
+            <Link href={`/links/${link.id}`}>
               {link.title}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
