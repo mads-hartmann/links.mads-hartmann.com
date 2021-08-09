@@ -5,7 +5,7 @@
 <!-- toc -->
 
 - [Generating SQLite database](#generating-sqlite-database)
-- [Enable FTS](#enable-fts)
+- [Enable FTS (full text search)](#enable-fts-full-text-search)
 - [Run datasette](#run-datasette)
 - [Query using `sqlite3`](#query-using-sqlite3)
 - [Relevant docs](#relevant-docs)
