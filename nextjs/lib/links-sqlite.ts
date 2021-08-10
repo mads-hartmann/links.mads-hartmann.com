@@ -20,6 +20,7 @@ function fromRow(row: any): Link {
 const db = new Database(
     path.join(
         process.cwd(),
+        'public',
         'data',
         'links.db'
     )

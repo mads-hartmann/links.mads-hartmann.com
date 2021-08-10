@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite nextjs/data/links.db
+airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite nextjs/public/data/links.db
 sqlite-utils enable-fts nextjs/data/links.db Links Title airtable_id
