@@ -14,7 +14,7 @@
 
 ## Generating SQLite database
 
-_see [ci/refresh_links_db.sh](../ci/refresh_links_db.sh) for working example_
+_see [ci/refresh-links-db.sh](../ci/refresh-links-db.sh) for working example_
 
 To generate the SQLite database from Airtable
 
@@ -24,7 +24,7 @@ airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
 
 ## Enable FTS (full text search)
 
-_see [ci/refresh_links_db.sh](../ci/refresh_links_db.sh) for working example_
+_see [ci/refresh-links-db.sh](../ci/refresh-links-db.sh) for working example_
 
 Enable FTS (full text search) - this creates a few virtual tables that Datasette uses to perform full text search (see [docs](https://docs.datasette.io/en/stable/full_text_search.html) for more info). I only care about searching the titles for now.
 
