@@ -14,11 +14,11 @@
   "dependencies": {
     "@types/sqlite3": "^3.1.7",
     "next": "^11.1.0",
+    "nodejs-file-downloader": "^4.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sqlite3": "^5.0.2",
-    "swr": "^0.5.6",
-    "zx": "^3.0.0"
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "@types/react": "^17.0.16",

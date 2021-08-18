@@ -1,11 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { LinksDB } from '../../lib/links-db'
 import fs from 'fs'
-import { $ } from 'zx'
-
-// I don't want to see the shell commands in my stdout
-// set to true to debug.
-$.verbose = false
+import Downloader from 'nodejs-file-downloader';
 
 async function download(uri: string, filename: string) {
 
@@ -16,11 +12,17 @@ async function download(uri: string, filename: string) {
 
     console.log('Downloading file')
 
+    const downloader = new Downloader({
+        url: uri,
+        directory: "/tmp",
+        fileName: 'links.db'
+    })
+
     try {
-        await $`curl -o ${filename} ${uri} > /dev/null`
-    } catch (p) {
-        console.log(`Exit code: ${p.exitCode}`)
-        console.log(`Error: ${p.stderr}`)
+        await downloader.download();//Downloader.download() returns a promise.
+        console.log('All done');
+    } catch (error) {
+        console.log('Download failed', error)
     }
 };
 
