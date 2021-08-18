@@ -10,7 +10,7 @@ if [[ -f "${PATH_TO_NEXTJS_DB}" ]]; then
 fi
 
 echo "Generating new SQLite DB at ${PATH_TO_NEXTJS_DB}"
-airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite "${PATH_TO_NEXTJS_DB}"
+airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite "${PATH_TO_NEXTJS_DB}" --key "${AIRTABLE_KEY}"
 
 echo "Enabling FTS"
 sqlite-utils enable-fts "${PATH_TO_NEXTJS_DB}" Links Title airtable_id
