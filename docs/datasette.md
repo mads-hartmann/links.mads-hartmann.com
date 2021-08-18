@@ -19,7 +19,7 @@ _see [ci/refresh-links-db.sh](../ci/refresh-links-db.sh) for working example_
 To generate the SQLite database from Airtable
 
 ```sh
-airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite data/links.db
+airtable-export data "${AIRTABLE_BASE_ID}" Links --sqlite nextjs/public/data/links.db
 ```
 
 ## Enable FTS (full text search)
@@ -29,7 +29,7 @@ _see [ci/refresh-links-db.sh](../ci/refresh-links-db.sh) for working example_
 Enable FTS (full text search) - this creates a few virtual tables that Datasette uses to perform full text search (see [docs](https://docs.datasette.io/en/stable/full_text_search.html) for more info). I only care about searching the titles for now.
 
 ```sh
-sqlite-utils enable-fts data/links.db Links Title
+sqlite-utils enable-fts nextjs/public/data/links.db Links Title
 ```
 
 See the docs for more details [here](https://www.sqlite.org/fts5.html).
@@ -45,7 +45,7 @@ SELECT * FROM Links_fts where Title MATCH '50ms';
 Start Datasette:
 
 ```sh
-datasette serve -h 0.0.0.0 -p 8001 data/links.db
+datasette serve -h 0.0.0.0 -p 8001 nextjs/public/data/links.db
 ```
 
 ## Query using `sqlite3`
@@ -53,7 +53,7 @@ datasette serve -h 0.0.0.0 -p 8001 data/links.db
 Or query using `sqlite3`
 
 ```sh
-sqlite3 data/links.db
+sqlite3 nextjs/public/data/links.db
 ```
 
 To describe the tables
