@@ -43,9 +43,6 @@ RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
     rm -rf /var/lib/apt && \
     rm -rf /var/lib/dpkg/info/*
 
-# Install datasette and datasette plugins.
-RUN pip install datasette airtable-export sqlite-utils datasette-render-markdown
-
 #
 # NextJS
 # Dependencies: Node, NPM

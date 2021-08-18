@@ -1,0 +1,4 @@
+airtable-export==0.7.1
+datasette==0.58.1
+datasette-render-markdown==1.2
+sqlite-utils==3.14

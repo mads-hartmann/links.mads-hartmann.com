@@ -5,7 +5,8 @@ tasks:
   # Tools
   - init: npm install
   # Datasette
-  - command: cd datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json ../nextjs/public/data/links.db
+  - init: cd ${GITPOD_REPO_ROOT}/datasette && pip install -r requirements.txt
+    command: cd ${GITPOD_REPO_ROOT}/datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json ../nextjs/public/data/links.db
     openMode: tab-after
   # NextJS
   - init: cd ${GITPOD_REPO_ROOT}/nextjs && npm install
