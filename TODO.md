@@ -10,8 +10,8 @@ Keeping track of various TODOs for experiments and so on.
 
 ## Datasette
 
-- [ ] Create a datasette/requirements.txt file to fix versions
-- [ ] Set up Github Action to create and commit sqlite database every 12h
+- [x] Create a datasette/requirements.txt file to fix versions
+- [x] Set up Github Action to create and commit sqlite database every 12h
 - [ ] Deploy datasette AWS or GCP so I can use it as an API for a SPA
 
 ## NextJS
