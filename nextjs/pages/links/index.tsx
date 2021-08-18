@@ -1,10 +1,10 @@
-import { getLinks } from '../../lib/links-sqlite'
+import { LinksDB } from '../../lib/links-db'
 import Link from 'next/link'
 
 export async function getStaticProps() {
   return {
     props: {
-      links: await getLinks()
+      links: await LinksDB.fromGitRepository().getLinks()
     }
   }
 }

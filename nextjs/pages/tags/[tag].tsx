@@ -1,8 +1,8 @@
-import { getTags, getLinksWithTag } from '../../lib/links-sqlite'
+import { LinksDB } from '../../lib/links-db'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const tags = await getTags()
+    const tags = await LinksDB.fromGitRepository().getTags()
     const paths = tags.map((tag) => ({
         params: { tag: tag }
     }))
@@ -14,7 +14,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const tag: string = context.params.tag as string
-    const links = await getLinksWithTag(tag)
+    const links = await LinksDB.fromGitRepository().getLinksWithTag(tag)
     return {
         props: {
             tag: tag,

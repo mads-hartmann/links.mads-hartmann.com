@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { searchTitle } from '../../lib/links-sqlite'
+import { LinksDB } from '../../lib/links-db'
 import fs from 'fs'
 import { $ } from 'zx'
 
@@ -30,12 +30,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ? process.env.GITPOD_WORKSPACE_URL.replace('https://', 'https://3000-')
         : `https://${process.env.VERCEL_URL}`
 
-    const uri = `${url}/data/links.db`
-    await download(uri, "/tmp/links.db")
+    await download(`${url}/data/links.db`, "/tmp/links.db")
+
+    const db = new LinksDB({
+        dbPath: "/tmp/links.db"
+    })
 
     const title = req.query.title;
 
-    const links = !title ? [] : await searchTitle(req.query.title as string)
+    const links = !title ? [] : await db.searchTitle(req.query.title as string)
 
     res.status(200).json({
         query: req.query.title,

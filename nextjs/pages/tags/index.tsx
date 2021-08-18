@@ -1,9 +1,9 @@
-import { getTags } from '../../lib/links-sqlite'
+import { LinksDB } from '../../lib/links-db'
 
 export async function getStaticProps() {
     return {
         props: {
-            tags: await getTags()
+            tags: await LinksDB.fromGitRepository().getTags()
         }
     }
 }
