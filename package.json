@@ -1,4 +1,8 @@
 {
+  "name": "tools",
+  "engines": {
+    "node": "~14.17"
+  },
   "devDependencies": {
     "markdown-toc": "^1.2.0",
     "husky": "^7.0.1",
