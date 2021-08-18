@@ -19,4 +19,5 @@ Keeping track of various TODOs for experiments and so on.
 - [X] Add to gitpod setting
 - [X] Finish basic browsing
 - [ ] Add search functionality, preferably an API endpoint backed by SQLite
-  - [ ] Download the sqlite database when the function loads and store it in tmp. Means I need to have access to hosted URL (so I know where to fetch it from), and I have to refactor the search module into a class so I can pass in the DB.
+  - [x] Download the sqlite database when the function loads and store it in tmp. Means I need to have access to hosted URL (so I know where to fetch it from), and I have to refactor the search module into a class so I can pass in the DB.
+  - [ ] Node 14 doesn't support the node:fs import syntax which I believe zx uses.
