@@ -1,4 +1,5 @@
 {
+  "name": "tools",
   "engines": {
     "node": "~14.17"
   },
