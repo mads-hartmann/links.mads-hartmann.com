@@ -1,7 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { LinksDB } from '../../lib/links-db'
 import fs from 'fs'
-import Downloader from 'nodejs-file-downloader';
+
+import fetch from 'node-fetch';
+import { promisify } from 'util';
+const writeFilePromise = promisify(fs.writeFile);
+
+function downloadFile(url: string, outputPath: string) {
+    return fetch(url)
+        .then(x => x.arrayBuffer())
+        .then(x => writeFilePromise(outputPath, Buffer.from(x)));
+}
 
 async function download(uri: string, filename: string) {
 
@@ -10,16 +19,9 @@ async function download(uri: string, filename: string) {
         return
     }
 
-    console.log('Downloading file')
-
-    const downloader = new Downloader({
-        url: uri,
-        directory: "/tmp",
-        fileName: 'links.db'
-    })
-
     try {
-        await downloader.download();//Downloader.download() returns a promise.
+        console.log('Downloading file')
+        await downloadFile(uri, '/tmp/links.db');
         console.log('All done');
     } catch (error) {
         console.log('Download failed', error)
