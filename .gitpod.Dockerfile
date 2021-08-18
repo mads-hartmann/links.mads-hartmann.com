@@ -37,6 +37,8 @@ RUN apt-get install -y python3-pip
 RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9 && \
     apt-get update && \
     apt-get -t sid install -y --no-install-recommends libsqlite3-mod-spatialite && \
     apt clean && \
