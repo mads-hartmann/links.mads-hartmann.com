@@ -1,0 +1,42 @@
+name: Update DB (cron)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # At 23:00 every day
+    # Once a day is enough for now, no need to hit Airtable harder than that.
+    - cron: "0 23 * * *"
+
+jobs:
+  generate:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install PIP packages
+        run: pip3 install -r datasette/requirements.txx
+
+      - name: Create sources from Airtable
+        env:
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
+        run: ./ci/refresh-links-db.sh
+
+      - name: Commit
+        run: |
+          if test -n "$(git status --porcelain)"; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add nextjs/public/data/links.db
+            git commit -m "Update links database"
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
