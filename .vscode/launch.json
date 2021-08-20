@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "E2E tests",
+            "cwd": "${workspaceFolder}/nextjs",
+            "program": "node_modules/.bin/mocha",
+            "args": [
+                "lib/*.e2e.ts"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "protocol": "inspector"
+        }
+    ]
+}

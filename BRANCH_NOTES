@@ -1,0 +1,29 @@
+
+This is an experiment in adding scraping capabilities.
+
+The idea is to treat the manually links as "inspiration" for other links that might be interesting.
+
+- Find a way to make a distinction between manually entered and automatically added.
+- Find the distinct set of doamins. Check if they have RSS/Atom feeds. If they do scrape them all and add the links to the DB.
+
+For books it could use an API to look up other books by the same author.
+
+TODOS
+
+Test setup
+- [ ] Make tests work again in the new setup `npm run test:unit --workspace packages/lib` doesn't work.
+- [ ] (Update to new project layout) Enable config to run test in VSCode
+- [ ] Run tests as part of PRs
+
+Implementation
+
+- [ ] Finish setup for the little CLI tools
+  - Right now `bin/scrape/scrape` doesn't work. Perhaps I need a new folder structure so that I can have separate tsconfigs for bin and the nextjs site, while still allowing them to share a common set of libraries.
+  - See this for how to use lerna https://github.com/NiGhTTraX/ts-monorepo/tree/npm
+- [ ] Extend links-db to return the distinct set of domains of all links in the db
+- [x] Given a domain, find the rss feed (fetch and look for link tag, eg. see below)
+        <link rel="alternate" type="application/rss+xml" href="https://blog.mads-hartmann.com/feed.xml" title="Mads Hartmann">
+- [x] Use rss-parser for parse feed https://www.npmjs.com/package/rss-parser
+- [ ] Write unit tests; with the required refactoring, test fixture setup, etc.
+  - [ ] Right now the code only takes care of the happy path, fix the implementation as tests are written
+- [ ] Write the new links somewhere

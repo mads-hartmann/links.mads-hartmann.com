@@ -7,7 +7,6 @@
 - [Generating SQLite database](#generating-sqlite-database)
 - [Enable FTS (full text search)](#enable-fts-full-text-search)
 - [Run datasette](#run-datasette)
-- [Query using `sqlite3`](#query-using-sqlite3)
 - [Relevant docs](#relevant-docs)
 
 <!-- tocstop -->
@@ -46,38 +45,6 @@ Start Datasette:
 
 ```sh
 datasette serve -h 0.0.0.0 -p 8001 nextjs/public/data/links.db
-```
-
-## Query using `sqlite3`
-
-Or query using `sqlite3`
-
-```sh
-sqlite3 nextjs/public/data/links.db
-```
-
-To describe the tables
-
-```sql
-.schema Links
-```
-
-The multiple-select Airtable columns are JSON arrays so to query them I have to use the [JSON support](https://www.sqlite.org/json1.html). The following example queries links with the SRE tag.
-
-```sql
-SELECT Title, json_each.value
-FROM Links, json_each(Links.Topic)
-WHERE json_each.value LIKE 'SRE%'
-LIMIT 5;
- ```
-
-The following counts the number of links for each tag.
-
-```sql
-SELECT json_each.value, COUNT(*) as count
-FROM Links, json_each(Links.Topic)
-GROUP BY json_each.value
-ORDER BY count DESC;
 ```
 
 ## Relevant docs

@@ -4,8 +4,21 @@ Keeping track of various TODOs for experiments and so on.
 
 ## Monorepo
 
+- [ ] Can I move packages/lib/ts/test to be alongside ts so packages/lib/test (I probably can with another TypeScript Project reference)
 - [ ] Do I need those tsconfig.ref.json files?
   - [ ] I don't think TypeScript/NPM deals with dependencies well. E.g. if I change packages/lib and run `npm run build -w packages/web` it doesn't recompile lib. This is what TypeScript references is supposed to fix, so maybe it isn't configured correctly yet.
+
+## Random thoughts
+
+### Data lake
+
+Consider this a data-lake containing data from various sources. E.g.
+
+- Links I've saved (airtable)
+- Tweets from my timeline
+- Books in GoodReads
+
+Then this would be a place for me to pull the data, enhance it, and make it explorable.
 
 ## Docs
 
