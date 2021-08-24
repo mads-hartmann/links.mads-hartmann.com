@@ -1,7 +1,7 @@
 import path from 'path'
 import { Database } from 'sqlite3'
 
-type Link = {
+export type Link = {
     id: string
     title: string
     topics: string[]
@@ -88,7 +88,12 @@ export class LinksDB {
             const tags: Tag[] = []
 
             const query = `
-                SELECT DISTINCT(json_each.value) as tag from Links, json_each(Links.Topic);
+                SELECT 
+                    DISTINCT(json_each.value) as tag,
+                    COUNT(*) as count
+                FROM Links, json_each(Links.Topic)
+                GROUP BY tag
+                ORDER BY count DESC;
             `
 
             this.db.each(query,

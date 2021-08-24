@@ -9,6 +9,7 @@ export default function Home({ tags }) {
                 <li><Link href="/tags">All tags</Link></li>
                 <li><Link href="/links">All links</Link></li>
                 <li><Link href="/search">Search</Link></li>
+                <li><Link href="/explore">Explore</Link></li>
             </ul>
         </div>
     )
