@@ -1,0 +1,21 @@
+{
+  "name": "@links/lib",
+  "version": "1.0.0",
+  "description": "Shared library code",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mads-hartmann/links.mads-hartmann.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mads-hartmann/links.mads-hartmann.com/issues"
+  },
+  "homepage": "https://github.com/mads-hartmann/links.mads-hartmann.com#readme"
+}
