@@ -17,11 +17,10 @@ I use [Gitpod](https://www.gitpod.io/) to manage my development environment. See
 
 ## Environment variables
 
-The following environment variables needed. For Gitpod these can be configured in [Settings -> Variables](https://gitpod.io/variables).
+The following environment variables needed. For Gitpod these can be configured in [Settings -> Variables](https://gitpod.io/variables). For Vercel they can be configued in [Environment Variables](https://vercel.com/mads-hartmann/links-mads-hartmann-com/settings/environment-variables)
 
 | Name | Description |
 | - | - |
-| ELEVENTY_ENV | Either `development` or `production`. Will use mock data during development and real data from Airtable when set to production. |
 | AIRTABLE_BASE_ID | The table ID |
 | AIRTABLE_KEY | Used. to authenticate with the Airtable API |
 
