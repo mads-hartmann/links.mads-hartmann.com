@@ -54,6 +54,9 @@ RUN add-apt-repository "deb http://httpredir.debian.org/debian sid main" && \
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 
+# The project is using NPM Workspaces, which were introduced in v7
+RUN npm install -g npm@7
+
 #
 # Gitpod user
 #
