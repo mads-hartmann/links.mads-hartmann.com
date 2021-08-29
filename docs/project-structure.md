@@ -1,6 +1,8 @@
 # Project structure
 
-The project relies on [NPM workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces).
+The project relies on [NPM workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) and Typescript project references.
+
+Each packages uses [ESM (ECMAScript Modules)](https://nodejs.org/api/esm.html).
 
 TODO: Follow [this guide](https://2ality.com/2021/07/simple-monorepos.html) and leave a reference to it here
 

@@ -1,0 +1,14 @@
+
+The following works now:
+
+```sh
+npm -w packages/lib run build
+npm -w packages/cli run build
+node packages/cli/dist/index.js
+```
+
+TODO:
+
+- Read through the rest of the blog post
+- Upgrade Gitpod config to build the packages as part of the prebuild
+- Do I have to manually rebuild everything every time? Can I use ts-node (do I want to?)

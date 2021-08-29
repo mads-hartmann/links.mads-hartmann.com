@@ -1,24 +1,27 @@
 {
   "name": "@links/cli",
-  "version": "1.0.0",
-  "description": "Command line interface",
-  "main": "index.js",
   "type": "module",
+  "exports": {
+    "./*": "./dist/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ]
+    }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
     "@links/cli": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^4.4.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mads-hartmann/links.mads-hartmann.com.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mads-hartmann/links.mads-hartmann.com/issues"
-  },
-  "homepage": "https://github.com/mads-hartmann/links.mads-hartmann.com#readme"
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "watch": "tsc --build --watch"
+  }
 }
