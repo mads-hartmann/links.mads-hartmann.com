@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { LinksDB } from '../../lib/links-db'
-import { download } from '../../lib/download-db
+import { download } from '../../lib/download-db'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
