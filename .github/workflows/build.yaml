@@ -12,7 +12,7 @@ jobs:
           node-version: "12"
 
       - name: NPM install
-        run: cd nextjs && npm ci
+        run: npm ci
 
-      - name: Build site (verify that it works)
-        run: cd nextjs && npm run build
+      - name: Compile
+        run: npm run build --workspaces
