@@ -12,6 +12,8 @@ tasks:
   - init: cd ${GITPOD_REPO_ROOT}/nextjs && npm install
     command: cd ${GITPOD_REPO_ROOT}/nextjs && npm run dev
     openMode: tab-after
+  # Monorepo
+  - init: npm run build --workspaces
 
 ports:
   # Datasette

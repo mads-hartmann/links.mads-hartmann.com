@@ -9,6 +9,6 @@ node packages/cli/dist/index.js
 
 TODO:
 
-- Read through the rest of the blog post
-- Upgrade Gitpod config to build the packages as part of the prebuild
+- Read through the rest of the blog post (document the important parts in this doc)
+- [x] Upgrade Gitpod config to build the packages as part of the prebuild
 - Do I have to manually rebuild everything every time? Can I use ts-node (do I want to?)
