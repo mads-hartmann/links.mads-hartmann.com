@@ -13,5 +13,10 @@
   },
   "husky": {
     "pre-commit": "lint-staged --config .lintstagedrc.js"
-  }
+  },
+  "workspaces": [
+    "packages/lib",
+    "packages/cli",
+    "packages/web"
+  ]
 }

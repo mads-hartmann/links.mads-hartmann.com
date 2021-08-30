@@ -1,4 +1,4 @@
-import { LinksDB } from '../../lib/links-db'
+import { LinksDB } from '@links/lib/links-db'
 import Link from 'next/link'
 
 export async function getStaticProps() {
