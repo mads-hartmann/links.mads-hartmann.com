@@ -2,6 +2,10 @@
 
 Keeping track of various TODOs for experiments and so on.
 
+## Monorepo
+
+- [ ] Do I need those tsconfig.ref.json files?
+
 ## Docs
 
 - [x] Automatically create TOCs
