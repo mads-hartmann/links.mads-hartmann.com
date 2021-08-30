@@ -2,14 +2,18 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  # install and build packages
-  - init: npm install && npm run build --workspaces
-  # Datasette
-  - init: cd ${GITPOD_REPO_ROOT}/datasette && pip install -r requirements.txt
-    command: cd ${GITPOD_REPO_ROOT}/datasette && datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json ../nextjs/public/data/links.db
-    openMode: tab-after
-  # Web
-  - command: npm run dev --workspace packages/web
+  - name: Datasette
+    init: |
+      cd ${GITPOD_REPO_ROOT}/datasette
+      pip install -r requirements.txt
+    command: |
+      cd ${GITPOD_REPO_ROOT}/datasette
+      datasette serve -h 0.0.0.0 -p 8001 --metadata metadata.json ../packages/web/public/data/links.db
+  - name: Webserver
+    init: |
+      npm install
+      npm run build --workspaces
+    command: npm run dev --workspace packages/web
     openMode: tab-after
 
 ports:
