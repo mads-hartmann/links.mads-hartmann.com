@@ -11,6 +11,9 @@ jobs:
         with:
           node-version: "12"
 
+      - name: Upgrade to NPM 7
+        run: npm install -g npm@7
+
       - name: NPM install
         run: npm ci
 
