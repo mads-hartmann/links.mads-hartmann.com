@@ -1,4 +1,4 @@
-import { LinksDB } from '../../lib/links-db'
+import { LinksDB } from '@links/lib/links-db'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 

@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import styles from '../styles/Explore.module.css'
-import { LinksDB, Link as LinkType } from '../lib/links-db'
+import { LinksDB, Link as LinkType } from '@links/lib/links-db'
 import Link from 'next/link'
 
 export async function getStaticProps() {

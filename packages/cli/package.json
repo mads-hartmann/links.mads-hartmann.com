@@ -13,9 +13,6 @@
   },
   "version": "1.0.0",
   "main": "index.js",
-  "dependencies": {
-    "@links/cli": "*"
-  },
   "devDependencies": {
     "typescript": "^4.4.2"
   },

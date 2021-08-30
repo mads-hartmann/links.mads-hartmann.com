@@ -2,10 +2,13 @@
     "files": [],
     "references": [
         {
-            "path": "./stoa/tsconfig.ref.json"
+            "path": "./lib/tsconfig.ref.json"
         },
         {
-            "path": "./demo-blog/tsconfig.ref.json"
+            "path": "./cli/tsconfig.ref.json"
+        },
+        {
+            "path": "./web/tsconfig.ref.json"
         },
     ],
 }

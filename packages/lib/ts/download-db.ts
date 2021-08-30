@@ -1,13 +1,13 @@
 import fs from 'fs'
-
 import fetch from 'node-fetch';
 import { promisify } from 'util';
+
 const writeFilePromise = promisify(fs.writeFile);
 
 function downloadFile(url: string, outputPath: string) {
     return fetch(url)
-        .then(x => x.arrayBuffer())
-        .then(x => writeFilePromise(outputPath, Buffer.from(x)));
+        .then((x: any) => x.arrayBuffer())
+        .then((x: any) => writeFilePromise(outputPath, Buffer.from(x)));
 }
 
 export async function download(uri: string, filename: string) {

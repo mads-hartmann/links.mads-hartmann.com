@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { LinksDB } from '../../lib/links-db'
-import { download } from '../../lib/download-db'
+import { LinksDB } from '@links/lib/links-db'
+import { download } from '@links/lib/download-db'
 
+// curl -X GET localhost:3000/api/topics
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const url = process.env.GITPOD_WORKSPACE_URL
@@ -14,12 +15,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         dbPath: "/tmp/links.db"
     })
 
-    const title = req.query.title;
-
-    const links = !title ? [] : await db.searchTitle(req.query.title as string)
+    const topics = await db.getTags()
 
     res.status(200).json({
-        query: req.query.title,
-        links: links
+        topics: topics
     })
+
 }

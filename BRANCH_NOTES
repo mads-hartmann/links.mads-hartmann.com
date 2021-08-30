@@ -15,3 +15,4 @@ TODO:
 - Do I have to manually rebuild everything every time? Can I use ts-node (do I want to?)
     - For rebuilding it sounds like TypeScript project references takes care of that as we're using the `--build` mode "Build mode (see below) will automatically build the referenced project if needed"
     - TODO: Can I use ts-node?
+- [ ] Get tests working for lib

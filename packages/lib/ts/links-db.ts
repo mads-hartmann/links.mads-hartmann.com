@@ -43,7 +43,7 @@ export class LinksDB {
                 FROM Links
                 WHERE airtable_id = ?
             `
-            this.db.get(query, id, (statement, row, error) => {
+            this.db.get(query, id, (statement: any, row: any, error: Error) => {
                 if (error) {
                     console.error(`failed to load link ${id}`, error)
                     reject(error)
