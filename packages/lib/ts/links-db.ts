@@ -183,7 +183,7 @@ export class LinksDB {
         return ({
             id: row['Id'],
             title: row['Title'],
-            topics: JSON.parse(row['Topic'])
+            topics: JSON.parse(row['Topic']) || []
         })
     }
 
