@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Shared library code",
   "main": "dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "exports": {
     "./*": "./dist/*.js"
   },

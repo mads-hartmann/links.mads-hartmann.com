@@ -1,6 +1,6 @@
 {
   "name": "@links/cli",
-  "type": "module",
+  "type": "commonjs",
   "exports": {
     "./*": "./dist/*.js"
   },
