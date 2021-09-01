@@ -1,0 +1,24 @@
+{
+    "all": true,
+    "cache": true,
+    "extension": [
+        ".ts"
+    ],
+    "include": [
+        "ts"
+    ],
+    "exclude": [
+        "ts/test",
+        "**/*.unit.ts"
+    ],
+    "require": [
+        "ts-node/register"
+    ],
+    "report-dir": "./coverage",
+    "reporter": [
+        "html",
+        "text",
+        "text-summary"
+    ],
+    "temp-directory": "./coverage/.nyc_output"
+}
