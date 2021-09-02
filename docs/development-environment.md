@@ -19,14 +19,26 @@ I use [Gitpod](https://www.gitpod.io/) to manage my development environment. See
 
 The following environment variables needed. For Gitpod these can be configured in [Settings -> Variables](https://gitpod.io/variables). For Vercel they can be configued in [Environment Variables](https://vercel.com/mads-hartmann/links-mads-hartmann-com/settings/environment-variables)
 
-| Name | Description |
-| - | - |
-| AIRTABLE_BASE_ID | The table ID |
-| AIRTABLE_KEY | Used. to authenticate with the Airtable API |
+| Name             | Description                                 |
+| ---------------- | ------------------------------------------- |
+| AIRTABLE_BASE_ID | The table ID                                |
+| AIRTABLE_KEY     | Used. to authenticate with the Airtable API |
 
 ## Ports
 
 TODO: add ports
+
+## Node version
+
+Currently using 14.x as that's what Vercel supports. To make sure all environment match you should update the following whenever the version of Node is changed
+
+- CircleCI configuration
+- Gitpod configuration
+- Vercel configuration
+
+## Typescript version
+
+TODO: how do I make sure it's the same version of Typescript that's used by ts-node and Vercel during compilation?
 
 ## Git hooks
 
