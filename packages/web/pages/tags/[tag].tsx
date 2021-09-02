@@ -44,6 +44,7 @@ export default function TagPage({ tag, links }) {
     return (
         <>
             <h1>{tag}</h1>
+            <p>{links.length} links are tagged with {tag}</p>
             <ul>
                 {links.map(link => (
                     <li key={link.id}>

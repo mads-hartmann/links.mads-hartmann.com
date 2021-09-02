@@ -77,3 +77,13 @@ export default function Home({ tags, links }) {
         </div >
     )
 }
+
+Home.getLayout = function getLayout(page) {
+    // Disable the default layout - this page is a prototype and doesn't
+    // use the existing layout.
+    return (
+        <>
+            {page}
+        </>
+    )
+}

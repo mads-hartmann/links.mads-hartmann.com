@@ -1,5 +1,6 @@
 import path from 'path'
 import { LinksDB } from '@links/lib/links-db'
+import Link from 'next/link'
 
 export async function getStaticProps() {
     const db = new LinksDB({
@@ -10,25 +11,44 @@ export async function getStaticProps() {
             'links.db'
         )
     });
+    const tags = await db.getTags()
+    const grouped = tags.reduce((grouped, tag) => {
+        const letter = tag[0].toUpperCase()
+        const tags = grouped[letter] || []
+        tags.push(tag)
+        grouped[letter] = tags
+        return grouped
+    }, {})
     return {
         props: {
-            tags: await db.getTags()
+            groupedByLetter: Object.entries(grouped).sort(),
+            count: tags.length
         }
     }
 }
 
-export default function Home({ tags }) {
+export default function Home({ groupedByLetter, count }) {
     return (
-        <div>
-            <ul>
-                {tags.map(tag => (
-                    <li key={tag}>
-                        <a href={`/tags/${tag}`}>
-                            {tag}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <h1>Tags</h1>
+            <p>Showing {count} tags</p>
+            {groupedByLetter.map((tuple) => {
+                const [letter, tags] = tuple
+                return (
+                    <div key={letter}>
+                        <h2>{letter}</h2>
+                        <ul>
+                            {tags.map((tag: string) => (
+                                <li key={tag}>
+                                    <Link href={`/tags/${tag}`}>
+                                        {tag}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            })}
+        </>
     )
 }
