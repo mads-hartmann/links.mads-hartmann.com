@@ -42,6 +42,10 @@ Currently using 14.x as that's what Vercel supports. To make sure all environmen
 
 TODO: how do I make sure it's the same version of Typescript that's used by ts-node and Vercel during compilation?
 
+### Compilation target
+
+As the Node runtime is 14 I have configured Typescript based on the recommendations [here](https://github.com/tsconfig/bases/blob/main/bases/node14.json); which is es2020.
+
 ## Git hooks
 
 I'm using [Husky](https://typicode.github.io/husky/#/) to handle Git hooks. The hooks can be found in the `.husky` folder.

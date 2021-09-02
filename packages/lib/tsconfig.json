@@ -2,9 +2,9 @@
     "compilerOptions": {
         "rootDir": "ts",
         "outDir": "dist",
-        "target": "es5",
+        "target": "es2020",
         "lib": [
-            "esnext",
+            "es2020",
             "DOM"
         ],
         "module": "CommonJS",
