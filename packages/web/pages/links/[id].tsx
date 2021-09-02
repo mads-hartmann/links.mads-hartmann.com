@@ -1,9 +1,18 @@
+import path from 'path'
 import { LinksDB } from '@links/lib/links-db'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const links = await LinksDB.fromGitRepository().getLinks()
+    const db = new LinksDB({
+        dbPath: path.join(
+            process.cwd(),
+            'public',
+            'data',
+            'links.db'
+        )
+    });
+    const links = await db.getLinks()
     const paths = links.map((link) => ({
         params: { id: link.id }
     }))
@@ -15,7 +24,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const id: string = context.params.id as string
-    const link = await LinksDB.fromGitRepository().getLink(id)
+    const db = new LinksDB({
+        dbPath: path.join(
+            process.cwd(),
+            'public',
+            'data',
+            'links.db'
+        )
+    });
+    const link = await db.getLink(id)
     return {
         props: {
             link: link,

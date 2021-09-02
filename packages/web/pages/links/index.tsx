@@ -1,10 +1,19 @@
+import path from 'path'
 import { LinksDB } from '@links/lib/links-db'
 import Link from 'next/link'
 
 export async function getStaticProps() {
+  const db = new LinksDB({
+    dbPath: path.join(
+      process.cwd(),
+      'public',
+      'data',
+      'links.db'
+    )
+  });
   return {
     props: {
-      links: await LinksDB.fromGitRepository().getLinks()
+      links: await db.getLinks()
     }
   }
 }

@@ -13,14 +13,17 @@
   },
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {
-    "typescript": "^4.4.2"
-  },
   "scripts": {
     "clean": "tsc --build --clean",
     "build": "tsc --build",
     "watch": "tsc --build --watch",
     "test:unit": "exit 0",
     "test:e2e": "exit 0"
+  },
+  "dependencies": {
+    "@links/lib": "*"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2"
   }
 }

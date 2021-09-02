@@ -21,17 +21,6 @@ export class LinksDB {
         this.db = new Database(options.dbPath)
     }
 
-    static fromGitRepository(): LinksDB {
-        return new LinksDB({
-            dbPath: path.join(
-                process.cwd(),
-                'public',
-                'data',
-                'links.db'
-            )
-        });
-    }
-
     public async getLink(id: string): Promise<Link> {
         return new Promise((resolve, reject) => {
             const query = `
