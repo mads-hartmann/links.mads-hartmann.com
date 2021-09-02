@@ -4,10 +4,11 @@
 
 <!-- toc -->
 
-- [Gitpod](#gitpod)
-- [Environment variables](#environment-variables)
-- [Ports](#ports)
-- [Git hooks](#git-hooks)
+- [Project structure](#project-structure)
+- [Building](#building)
+- [Runnings tests](#runnings-tests)
+  * [Running a single test](#running-a-single-test)
+- [SQLite](#sqlite)
 
 <!-- tocstop -->
 

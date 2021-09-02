@@ -7,6 +7,8 @@
 - [Gitpod](#gitpod)
 - [Environment variables](#environment-variables)
 - [Ports](#ports)
+- [Node version](#node-version)
+- [Typescript version](#typescript-version)
 - [Git hooks](#git-hooks)
 
 <!-- tocstop -->
