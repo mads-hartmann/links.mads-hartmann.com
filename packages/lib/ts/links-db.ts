@@ -179,6 +179,40 @@ export class LinksDB {
         })
     }
 
+    public async getDistinctDomains(): Promise<{ domain: string, count: number }[]> {
+        return new Promise((resolve, reject) => {
+            const domains: { domain: string, count: number }[] = []
+
+            const query = `
+                SELECT 
+                    SUBSTR(SUBSTR(Link, INSTR(Link, '//') + 2), 0, INSTR(SUBSTR(Link, INSTR(Link, '//') + 2), '/')) as domain,
+                    COUNT(*) as count
+                FROM Links
+                GROUP BY domain
+                ORDER BY count DESC
+            `
+
+            this.db.each(query,
+                (error, row) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        domains.push({
+                            domain: row['domain'],
+                            count: row['count'],
+                        })
+                    }
+                },
+                (error, count) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        resolve(domains)
+                    }
+                });
+        })
+    }
+
     private fromRow(row: any): Link {
         return ({
             id: row['Id'],
