@@ -9,6 +9,7 @@
 - [Ports](#ports)
 - [Node version](#node-version)
 - [Typescript version](#typescript-version)
+  * [Compilation target](#compilation-target)
 - [Git hooks](#git-hooks)
 
 <!-- tocstop -->
