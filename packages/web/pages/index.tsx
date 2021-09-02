@@ -1,16 +1,54 @@
-import styles from '../styles/Home.module.css'
+import path from 'path'
+import { LinksDB } from '@links/lib/links-db'
 import Link from 'next/link'
 
-export default function Home({ tags }) {
+export async function getStaticProps() {
+    const db = new LinksDB({
+        dbPath: path.join(
+            process.cwd(),
+            'public',
+            'data',
+            'links.db'
+        )
+    });
+    const tags = await db.getTags()
+    const grouped = tags.reduce((grouped, tag) => {
+        const letter = tag[0].toUpperCase()
+        const tags = grouped[letter] || []
+        tags.push(tag)
+        grouped[letter] = tags
+        return grouped
+    }, {})
+    return {
+        props: {
+            groupedByLetter: Object.entries(grouped).sort(),
+            count: tags.length
+        }
+    }
+}
+
+export default function Home({ groupedByLetter, count }) {
     return (
-        <div className={styles.container}>
-            <h1>links.mads-hartmann.com</h1>
-            <ul>
-                <li><Link href="/tags">All tags</Link></li>
-                <li><Link href="/links">All links</Link></li>
-                <li><Link href="/search">Search</Link></li>
-                <li><Link href="/explore">Explore</Link></li>
-            </ul>
-        </div>
+        <>
+            <h1>Tags</h1>
+            <p>There are currently {count} tags in use.</p>
+            {groupedByLetter.map((tuple) => {
+                const [letter, tags] = tuple
+                return (
+                    <div key={letter}>
+                        <h2>{letter}</h2>
+                        <ul>
+                            {tags.map((tag: string) => (
+                                <li key={tag}>
+                                    <Link href={`/tags/${tag}`}>
+                                        {tag}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            })}
+        </>
     )
 }
