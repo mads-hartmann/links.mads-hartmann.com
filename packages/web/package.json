@@ -10,7 +10,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:unit": "exit 0",
+    "test:e2e": "exit 0"
   },
   "dependencies": {
     "jsdom": "^17.0.0",

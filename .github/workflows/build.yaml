@@ -19,3 +19,9 @@ jobs:
 
       - name: Compile
         run: npm run build --workspaces
+
+      - name: Tests - Unit
+        run: npm run test:unit --workspaces
+
+      - name: Tests - E2E
+        run: npm run test:e2e --workspaces
