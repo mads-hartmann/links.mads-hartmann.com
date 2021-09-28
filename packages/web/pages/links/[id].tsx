@@ -53,6 +53,7 @@ export default function LinkPage({ link }) {
                     </li>
                 ))}
             </ul>
+            <p>Visit the link: <a href={link.url} target="_blank">{link.url}</a></p>
         </>
     )
 }

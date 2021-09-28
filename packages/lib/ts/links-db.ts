@@ -4,7 +4,8 @@ import { Database } from 'sqlite3'
 export type Link = {
     id: string
     title: string
-    topics: string[]
+    topics: string[],
+    url: string
 }
 
 type Tag = string
@@ -206,7 +207,8 @@ export class LinksDB {
         return ({
             id: row['Id'],
             title: row['Title'],
-            topics: JSON.parse(row['Topic']) || []
+            topics: JSON.parse(row['Topic']) || [],
+            url: row['Link']
         })
     }
 
