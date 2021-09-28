@@ -31,7 +31,7 @@ jobs:
           if test -n "$(git status --porcelain)"; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git add nextjs/public/data/links.db
+            git add packages/web/public/data/links.db
             git commit -m "Update links database"
           fi
 
