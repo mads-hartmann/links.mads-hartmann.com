@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-PATH_TO_NEXTJS_DB="nextjs/public/data/links.db"
+PATH_TO_NEXTJS_DB="packages/web/public/data/links.db"
 
 if [[ -f "${PATH_TO_NEXTJS_DB}" ]]; then
     echo "Deleting existing database at ${PATH_TO_NEXTJS_DB}"
