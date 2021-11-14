@@ -1,10 +1,8 @@
-.container {
-    padding: 1rem;
-    max-width: 900px;
-    margin: 0 auto;
+.externalLink {
+    text-align: center;
 }
 
-.navList {
+.tags {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -13,6 +11,6 @@
     align-items: flex-start;
 }
 
-.navItem {
-    padding: 0 0.5rem;
+.tag {
+    padding: 0.2rem;
 }

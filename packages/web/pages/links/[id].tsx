@@ -2,6 +2,7 @@ import path from 'path'
 import { LinksDB } from '@links/lib/links-db'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
+import Styles from '../../styles/Link.module.css'
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const db = new LinksDB({
@@ -43,17 +44,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export default function LinkPage({ link }) {
     return (
         <>
-            <h1>Title: {link.title}</h1>
-            <ul>
+            <h1>{link.title}</h1>
+            <p className={Styles.externalLink}>
+                <a href={link.url} target="_blank" rel="noreferrer">{link.url}</a>
+            </p>
+            <ul className={Styles.tags}>
                 {link.topics.map(topic => (
-                    <li key={topic}>
+                    <li key={topic} className={Styles.tag}>
                         <Link href={`/tags/${topic}`}>
                             {topic}
                         </Link>
                     </li>
                 ))}
             </ul>
-            <p>Visit the link: <a href={link.url} target="_blank" rel="noreferrer">{link.url}</a></p>
+
         </>
     )
 }

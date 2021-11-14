@@ -1,11 +1,12 @@
-import path from 'path'
 import { Database } from 'sqlite3'
 
 export type Link = {
     id: string
     title: string
     topics: string[],
-    url: string
+    url: string,
+    addedOn: string,
+    readOn: string
 }
 
 type Tag = string
@@ -29,7 +30,9 @@ export class LinksDB {
                     airtable_id as Id,
                     Title,
                     Topic,
-                    Link
+                    Link,
+                    "Added at",
+                    "Read on"
                 FROM Links
                 WHERE airtable_id = ?
             `
@@ -53,7 +56,9 @@ export class LinksDB {
                     airtable_id as Id,
                     Title,
                     Topic,
-                    Link
+                    Link,
+                    "Added at",
+                    "Read on"
                 FROM Links
                 ORDER BY airtable_createdTime DESC
             `,
@@ -113,12 +118,15 @@ export class LinksDB {
                     airtable_id as Id,
                     Title,
                     Topic,
-                    Link
+                    Link,
+                    "Added at",
+                    "Read on"
                 FROM 
                     Links,
                     json_each(Links.Topic)
                 WHERE 
                     json_each.value = ?
+                ORDER BY "Added at" DESC
             `
 
             this.db.each(query, tag,
@@ -208,7 +216,9 @@ export class LinksDB {
             id: row['Id'],
             title: row['Title'],
             topics: JSON.parse(row['Topic']) || [],
-            url: row['Link']
+            url: row['Link'],
+            addedOn: row['Added at'] || null,
+            readOn: row['Read on'] || null
         })
     }
 

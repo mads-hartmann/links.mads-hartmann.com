@@ -73,9 +73,9 @@ This is a monorepo. It's been implemented using [NPM workspaces](https://docs.np
 
 - package.json : the top-level package.json specifies the `workspaces`
 - ./packages/tsconfig.json : This specifies the TypeScript project references
-- ./packages/*/package.json : describes the individual packages (notice type: module, exports, and typesVersions)
-- ./packages/*/tsconfig.json : The typescript config for the individual package
-- ./packages/*/tsconfig.ref.json : TODO: I'm not sure I actually need this.
+- ./packages/*/package.json : Describes the individual packages (notice type: module, exports, and typesVersions)
+- ./packages/*/tsconfig.json : The TypeScript config for the individual package
+- ./packages/*/tsconfig.ref.json : TODO:**** I'm not sure I actually need this.
 
 This is based on [this guide](https://2ality.com/2021/07/simple-monorepos.html) and leave a reference to it here
 
@@ -142,4 +142,4 @@ To query the SQLite database
 sqlite3 packages/web/public/data/links.db
 ```
 
-See [db-queriers](./db-queries.md) for example queries.
+See [db-queriers](./docs/db-queries.md) for example queries.

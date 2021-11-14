@@ -1,6 +1,8 @@
 import { LinksDB } from '@links/lib/links-db'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import path from 'path'
+import SharedStyles from '../../styles/Shared.module.css'
+import LinkList from '../../components/LinkList';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const db = new LinksDB({
@@ -32,28 +34,28 @@ export const getStaticProps: GetStaticProps = async (context) => {
         )
     });
     const links = await db.getLinksWithTag(tag)
+    const read = links.filter((link) => link.readOn)
+    const inbox = links.filter((link) => !link.readOn)
     return {
         props: {
             tag: tag,
-            links: links
+            count: links.length,
+            read: read,
+            inbox: inbox
         }
     }
 }
 
-export default function TagPage({ tag, links }) {
+export default function TagPage(props) {
+    const { tag, count, read, inbox } = props;
     return (
         <>
             <h1>{tag}</h1>
-            <p>{links.length} links are tagged with {tag}</p>
-            <ul>
-                {links.map(link => (
-                    <li key={link.id}>
-                        <a href={`/links/${link.id}`}>
-                            {link.title}
-                        </a>
-                    </li>
-                ))}
-            </ul>
+            <p className={SharedStyles.statistics}>{count} links are tagged with {tag}</p>
+            <h2>Read</h2>
+            <LinkList links={read} />
+            <h2>Inbox</h2>
+            <LinkList links={inbox} />
         </>
     )
 }

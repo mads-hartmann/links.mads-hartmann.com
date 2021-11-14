@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.tagContainer {
+    padding: 1em;
+    text-align: center;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
