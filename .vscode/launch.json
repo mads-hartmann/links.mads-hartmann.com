@@ -17,7 +17,7 @@
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceFolder}/packages/lib",
-            "program": "./node_modules/.bin/mocha",
+            "program": "${workspaceFolder}/node_modules/.bin/mocha",
             "args": [
                 "--timeout",
                 "10000",

@@ -48,8 +48,16 @@ export class LinksNotion {
     }
 
     public async getLinksWithTag(tag: string): Promise<Link[]> {
-        // TODO
-        return []
+        const response = await this.client.databases.query({
+            database_id: NOTION_DATABASE_ID,
+            filter: {
+                property: 'Topic',
+                multi_select: {
+                    contains: tag,
+                },
+            }
+        });
+        return this.fromResults(response.results)
     }
 
     public async searchTitle(token: string): Promise<{ title: string, id: string }[]> {
@@ -64,16 +72,16 @@ export class LinksNotion {
 
     private fromResults(resulsts: any[]): Link[] {
         return resulsts.map((result) => {
-            const readOn = result.properties['Read on'].date
-            const addedOn = result.properties['Added at'].date
+            const readOn = result.properties['Read on']?.date?.start || null
+            const addedOn = result.properties['Added at']?.date?.start || null
             const topics = result.properties.Topic.multi_select || []
             return ({
                 id: result.id,
                 title: result.properties.Title.title[0].plain_text,
                 topics: topics.map((t: any) => t.name),
                 url: result.properties.Link.url,
-                addedOn: addedOn ? addedOn.toString() : null,
-                readOn: readOn ? readOn.toString() : null
+                addedOn: addedOn,
+                readOn: readOn
             })
         })
     }

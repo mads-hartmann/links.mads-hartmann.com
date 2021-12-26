@@ -1,4 +1,5 @@
 import { LinksDB } from '@links/lib/links-db'
+import { LinksNotion } from '@links/lib/links-notion'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import path from 'path'
 import SharedStyles from '../../styles/Shared.module.css'
@@ -25,15 +26,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const tag: string = context.params.tag as string
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
-    const links = await db.getLinksWithTag(tag)
+    const notion = new LinksNotion()
+    const links = await notion.getLinksWithTag(tag)
     const read = links.filter((link) => link.readOn)
     const inbox = links.filter((link) => !link.readOn)
     return {
