@@ -1,19 +1,10 @@
-import path from 'path'
-import { LinksDB } from '@links/lib/links-db'
-import Link from 'next/link'
 import SharedStyles from '../../styles/Shared.module.css'
 import LinkList from '../../components/LinkList';
+import { LinksNotion } from '@links/lib/links-notion';
 
 export async function getStaticProps() {
-  const db = new LinksDB({
-    dbPath: path.join(
-      process.cwd(),
-      'public',
-      'data',
-      'links.db'
-    )
-  });
-  const links = await db.getLinks()
+  const notion = new LinksNotion()
+  const links = await notion.getLinks()
   const read = links.filter((link) => link.readOn)
   const inbox = links.filter((link) => !link.readOn)
   return {

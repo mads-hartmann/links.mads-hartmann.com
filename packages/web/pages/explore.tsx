@@ -1,23 +1,15 @@
 
-import path from 'path'
 import { useState } from 'react'
 import styles from '../styles/Explore.module.css'
-import { LinksDB, Link as LinkType } from '@links/lib/links-db'
 import Link from 'next/link'
+import { LinksNotion, Link as LinkType } from '@links/lib/links-notion'
 
 export async function getStaticProps() {
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
+    const notion = new LinksNotion
     return {
         props: {
-            tags: await db.getTags(),
-            links: await db.getLinks()
+            tags: await notion.getTags(),
+            links: await notion.getLinks()
         }
     }
 }

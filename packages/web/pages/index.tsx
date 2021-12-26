@@ -1,19 +1,11 @@
-import path from 'path'
-import { LinksDB } from '@links/lib/links-db'
+import { LinksNotion } from '@links/lib/links-notion'
 import Link from 'next/link'
 import Styles from '../styles/Tags.module.css'
 import SharedStyles from '../styles/Shared.module.css'
 
 export async function getStaticProps() {
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
-    const tags = await db.getTags()
+    const notion = new LinksNotion()
+    const tags = await notion.getTags()
     const grouped = tags.reduce((grouped, tag) => {
         const letter = tag[0].toUpperCase()
         const tags = grouped[letter] || []

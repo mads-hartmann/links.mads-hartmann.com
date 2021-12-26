@@ -22,29 +22,25 @@ export class LinksNotion {
     }
 
     public async getLink(id: string): Promise<Link> {
-        const response = await this.client.databases.query({
-            database_id: NOTION_DATABASE_ID,
-            filter: {
-                property: 'Note',
-                rich_text: {
-                    is_not_empty: true,
-                },
-            }
-        });
-        return this.fromResults(response.results)[0]
+        const response = await this.client.pages.retrieve({ page_id: id })
+        return this.fromResults([response])[0]
     }
 
     public async getLinks(): Promise<Link[]> {
+        // TODO: Fetch the remaining pages
         const response = await this.client.databases.query({
             database_id: NOTION_DATABASE_ID,
-            page_size: 500
+            page_size: 1000
         });
         return this.fromResults(response.results)
     }
 
     public async getTags(): Promise<Tag[]> {
-        // TODO
-        return []
+        const response = await this.client.databases.retrieve({
+            database_id: NOTION_DATABASE_ID
+        })
+        const topic: any = response.properties.Topic
+        return topic.multi_select.options.map((option: any) => option.name)
     }
 
     public async getLinksWithTag(tag: string): Promise<Link[]> {

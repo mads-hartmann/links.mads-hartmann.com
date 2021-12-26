@@ -1,20 +1,11 @@
-import { LinksDB } from '@links/lib/links-db'
 import { LinksNotion } from '@links/lib/links-notion'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import path from 'path'
 import SharedStyles from '../../styles/Shared.module.css'
 import LinkList from '../../components/LinkList';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
-    const tags = await db.getTags()
+    const notion = new LinksNotion()
+    const tags = await notion.getTags()
     const paths = tags.map((tag) => ({
         params: { tag: tag }
     }))

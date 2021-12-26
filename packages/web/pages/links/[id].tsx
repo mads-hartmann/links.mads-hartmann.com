@@ -1,19 +1,11 @@
-import path from 'path'
-import { LinksDB } from '@links/lib/links-db'
+import { LinksNotion } from '@links/lib/links-notion'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import Styles from '../../styles/Link.module.css'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
-    const links = await db.getLinks()
+    const notion = new LinksNotion();
+    const links = await notion.getLinks()
     const paths = links.map((link) => ({
         params: { id: link.id }
     }))
@@ -25,15 +17,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const id: string = context.params.id as string
-    const db = new LinksDB({
-        dbPath: path.join(
-            process.cwd(),
-            'public',
-            'data',
-            'links.db'
-        )
-    });
-    const link = await db.getLink(id)
+    const notion = new LinksNotion();
+    const link = await notion.getLink(id)
     return {
         props: {
             link: link,
