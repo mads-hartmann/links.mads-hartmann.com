@@ -28,6 +28,7 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@notionhq/client": "^0.4.11",
     "@types/chai": "^4.2.21",
     "@types/chai-as-promised": "^7.1.4",
     "@types/jsdom": "^16.2.13",
