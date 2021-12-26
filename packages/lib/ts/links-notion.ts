@@ -14,7 +14,7 @@ export type Link = {
 
 type Tag = string
 
-export class LinksDB {
+export class LinksNotion {
     private client: Client
 
     constructor() {
@@ -22,201 +22,59 @@ export class LinksDB {
     }
 
     public async getLink(id: string): Promise<Link> {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT
-                    airtable_id as Id,
-                    Title,
-                    Topic,
-                    Link,
-                    "Added at",
-                    "Read on"
-                FROM Links
-                WHERE airtable_id = ?
-            `
-            this.db.get(query, id, (statement: any, row: any, error: Error) => {
-                if (error) {
-                    console.error(`failed to load link ${id}`, error)
-                    reject(error)
-                } else {
-                    resolve(this.fromRow(row))
-                }
-            })
+        const response = await this.client.databases.query({
+            database_id: NOTION_DATABASE_ID,
+            filter: {
+                property: 'Note',
+                rich_text: {
+                    is_not_empty: true,
+                },
+            }
         });
+        return this.fromResults(response.results)[0]
     }
 
     public async getLinks(): Promise<Link[]> {
-        return new Promise((resolve, reject) => {
-            const links: Link[] = []
-
-            this.db.each(`
-                SELECT 
-                    airtable_id as Id,
-                    Title,
-                    Topic,
-                    Link,
-                    "Added at",
-                    "Read on"
-                FROM Links
-                ORDER BY airtable_createdTime DESC
-            `,
-                (error, row) => {
-                    if (error) {
-                        reject(error)
-                    }
-                    links.push(this.fromRow(row))
-                },
-                (error, count) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(links)
-                    }
-                });
-        })
+        const response = await this.client.databases.query({
+            database_id: NOTION_DATABASE_ID,
+            page_size: 500
+        });
+        return this.fromResults(response.results)
     }
 
     public async getTags(): Promise<Tag[]> {
-        return new Promise((resolve, reject) => {
-            const tags: Tag[] = []
-
-            const query = `
-                SELECT 
-                    DISTINCT(json_each.value) as tag,
-                    COUNT(*) as count
-                FROM Links, json_each(Links.Topic)
-                GROUP BY tag
-                ORDER BY count DESC;
-            `
-
-            this.db.each(query,
-                (error, row) => {
-                    if (error) {
-                        reject(error)
-                    }
-                    tags.push(row['tag'])
-                },
-                (error, count) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(tags)
-                    }
-                });
-        })
+        // TODO
+        return []
     }
 
     public async getLinksWithTag(tag: string): Promise<Link[]> {
-
-        return new Promise((resolve, reject) => {
-            const links: Link[] = []
-
-            const query = `
-                SELECT 
-                    airtable_id as Id,
-                    Title,
-                    Topic,
-                    Link,
-                    "Added at",
-                    "Read on"
-                FROM 
-                    Links,
-                    json_each(Links.Topic)
-                WHERE 
-                    json_each.value = ?
-                ORDER BY "Added at" DESC
-            `
-
-            this.db.each(query, tag,
-                (error, row) => {
-                    if (error) {
-                        reject(error)
-                    }
-                    links.push(this.fromRow(row))
-                },
-                (error, count) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(links)
-                    }
-                });
-        })
+        // TODO
+        return []
     }
 
     public async searchTitle(token: string): Promise<{ title: string, id: string }[]> {
-        return new Promise((resolve, reject) => {
-            const titles: { title: string, id: string }[] = []
-
-            const query = `
-                SELECT Title, airtable_id FROM Links_fts where Title MATCH ?
-            `
-
-            console.log(`Searching for title matching: ${token}`)
-
-            this.db.each(query, token,
-                (error, row) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        titles.push({
-                            title: row['Title'],
-                            id: row['airtable_id'],
-                        })
-                    }
-                },
-                (error, count) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(titles)
-                    }
-                });
-        })
+        // TODO
+        return []
     }
 
     public async getDistinctDomains(): Promise<{ domain: string, count: number }[]> {
-        return new Promise((resolve, reject) => {
-            const domains: { domain: string, count: number }[] = []
-
-            const query = `
-                SELECT 
-                    SUBSTR(SUBSTR(Link, INSTR(Link, '//') + 2), 0, INSTR(SUBSTR(Link, INSTR(Link, '//') + 2), '/')) as domain,
-                    COUNT(*) as count
-                FROM Links
-                GROUP BY domain
-                ORDER BY count DESC
-            `
-
-            this.db.each(query,
-                (error, row) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        domains.push({
-                            domain: row['domain'],
-                            count: row['count'],
-                        })
-                    }
-                },
-                (error, count) => {
-                    if (error) {
-                        reject(error)
-                    } else {
-                        resolve(domains)
-                    }
-                });
-        })
+        // TODO
+        return []
     }
 
-    private fromRow(row: any): Link {
-        return ({
-            id: row['Id'],
-            title: row['Title'],
-            topics: JSON.parse(row['Topic']) || [],
-            url: row['Link'],
-            addedOn: row['Added at'] || null,
-            readOn: row['Read on'] || null
+    private fromResults(resulsts: any[]): Link[] {
+        return resulsts.map((result) => {
+            const readOn = result.properties['Read on'].date
+            const addedOn = result.properties['Added at'].date
+            const topics = result.properties.Topic.multi_select || []
+            return ({
+                id: result.id,
+                title: result.properties.Title.title[0].plain_text,
+                topics: topics.map((t: any) => t.name),
+                url: result.properties.Link.url,
+                addedOn: addedOn ? addedOn.toString() : null,
+                readOn: readOn ? readOn.toString() : null
+            })
         })
     }
 

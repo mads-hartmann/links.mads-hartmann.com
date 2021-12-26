@@ -5,7 +5,7 @@ import { Scrape } from './scrape'
 
 describe('Scrape E2E', () => {
 
-    it.only('should successfully parse blog.mads-hartmann.com', async () => {
+    it('should successfully parse blog.mads-hartmann.com', async () => {
         const scrape = new Scrape({
             fetcher: new NodeFetch(),
             parser: new Parser()

@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lib: E2E",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/packages/lib",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "test:e2"
+            ],
+        },
+        {
+            "name": "Lib: E2E mocha",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/packages/lib",
+            "program": "./node_modules/.bin/mocha",
+            "args": [
+                "--timeout",
+                "10000",
+                "ts/*.e2e.ts"
+            ],
+        }
+    ]
+}
