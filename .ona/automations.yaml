@@ -1,0 +1,70 @@
+tasks:
+  installDeps:
+    name: Install dependencies
+    description: Install npm workspace dependencies and Datasette Python dependencies.
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y --no-install-recommends python3-pip python3-venv
+      npm install -g npm@8
+      npm ci
+      python3 -m venv .venv
+      . .venv/bin/activate
+      python -m pip install --upgrade pip
+      python -m pip install -r datasette/requirements.txt
+    triggeredBy:
+      - postDevcontainerStart
+
+  build:
+    name: Build workspaces
+    description: Compile all npm workspaces.
+    command: |
+      npm run build --workspaces
+    triggeredBy:
+      - postDevcontainerStart
+      - manual
+    dependsOn:
+      - installDeps
+
+  test:
+    name: Test workspaces
+    description: Run unit and end-to-end test scripts across all npm workspaces.
+    command: |
+      npm run test:unit --workspaces
+      npm run test:e2e --workspaces
+    triggeredBy:
+      - manual
+    dependsOn:
+      - installDeps
+
+services:
+  datasette:
+    name: Datasette
+    description: Explore the generated SQLite links database with Datasette.
+    triggeredBy:
+      - postDevcontainerStart
+    commands:
+      start: |
+        if [ ! -x .venv/bin/datasette ]; then
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends python3-pip python3-venv
+          python3 -m venv .venv
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install -r datasette/requirements.txt
+        else
+          . .venv/bin/activate
+        fi
+        datasette serve -h 0.0.0.0 -p 8001 --metadata datasette/metadata.json packages/web/public/data/links.db
+      ready: |
+        curl -f http://localhost:8001
+
+  webserver:
+    name: Webserver
+    description: Run the Next.js development server.
+    triggeredBy:
+      - postDevcontainerStart
+    commands:
+      start: |
+        npm run dev --workspace packages/web
+      ready: |
+        curl -f http://localhost:3000
