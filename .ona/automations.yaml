@@ -1,0 +1,50 @@
+tasks:
+  install:
+    name: Install dependencies
+    command: |
+      flock /tmp/links-tool-install.lock -c 'npm --version | grep -q "^8\.19\.4$" || sudo npm install -g npm@8.19.4'
+      flock /tmp/links-tool-install.lock -c 'python3 -m pip --version >/dev/null 2>&1 || (sudo apt-get update && sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip)'
+      flock /tmp/links-npm-install.lock -c 'npm ci'
+      flock /tmp/links-pip-install.lock -c 'python3 -m pip install --user -r datasette/requirements.txt'
+    triggeredBy:
+      - postDevcontainerStart
+      - manual
+
+  build:
+    name: Build workspaces
+    command: |
+      flock /tmp/links-tool-install.lock -c 'npm --version | grep -q "^8\.19\.4$" || sudo npm install -g npm@8.19.4'
+      flock /tmp/links-npm-install.lock -c 'npm ci'
+      flock /tmp/links-build.lock -c 'npm run build --workspaces'
+    dependsOn:
+      - install
+    triggeredBy:
+      - manual
+
+services:
+  web:
+    name: Next.js web app
+    description: Serves the Next.js application on port 3000.
+    commands:
+      start: |
+        flock /tmp/links-tool-install.lock -c 'npm --version | grep -q "^8\.19\.4$" || sudo npm install -g npm@8.19.4'
+        flock /tmp/links-npm-install.lock -c 'npm ci'
+        flock /tmp/links-build.lock -c 'npm run build --workspaces'
+        npm run dev --workspace packages/web
+      ready: |
+        curl -sf http://localhost:3000 >/dev/null
+    triggeredBy:
+      - postDevcontainerStart
+
+  datasette:
+    name: Datasette
+    description: Serves the links SQLite database on port 8001.
+    commands:
+      start: |
+        flock /tmp/links-tool-install.lock -c 'python3 -m pip --version >/dev/null 2>&1 || (sudo apt-get update && sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip)'
+        flock /tmp/links-pip-install.lock -c 'python3 -m pip install --user -r datasette/requirements.txt'
+        python3 -m datasette serve -h 0.0.0.0 -p 8001 --metadata datasette/metadata.json packages/web/public/data/links.db
+      ready: |
+        curl -sf http://localhost:8001 >/dev/null
+    triggeredBy:
+      - postDevcontainerStart

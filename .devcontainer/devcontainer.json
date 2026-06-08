@@ -1,0 +1,13 @@
+{
+  "name": "links.mads-hartmann.com",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:14-bullseye",
+  "forwardPorts": [3000, 8001],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js web app"
+    },
+    "8001": {
+      "label": "Datasette"
+    }
+  }
+}
